@@ -485,283 +485,133 @@ Congratulations! As data engineers, you have now set up a solid foundation of fu
 ----
 
 ### Exercise 3: Data Science and Analytics on the Lakehouse <a name="data-science-and-analytics-on-the-Lakehouse"></a>
+#### Task 3.1: Explore an ML model implemented using ADB managed MLflow and operationalized as an ML service using MLOps in Azure ML/AI. <a name="ml-model-using-mlflow"></a> 
 
-Architecture diagram shows the end-to-end MLOps pipeline using the Azure Databricks managed MLflow. After multiple iterations with various hyperparameters, registered the best performing model in Databricks MLflow model registry and set up model serving in Azure Databricks Workspace and Azure ML Workspace for low-latency requests.
+Architecture diagram shows the end-to-end MLOps pipeline using the Azure Databricks managed MLflow. 
+Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a given customer will churn.
+
+We also like to understand out customer sentiment better so as to create targated campaign and improve our sale. 
+
+For a data science team charged with creating this model, they will usually undergo a set of key tasks: 
+
+- exploring data to understand the features available, any interesting patterns that can be found, and its potential for training such a model
+- running tools such as a hyperparameter sweep to identify the best performing algorithm for the model
+- validating the model against a holdout dataset, and registering the model if its performance is sustained over the unseen data
+- deploying the model to production to be used against real-world data - in this case, our full customer base to identify churn candidates and take preventive actions
   
 
 ![abcdefgh](media/images/image3100.png)
  
 
 **Steps:**
-  
-
-In Azure Databricks everything starts with setting up a workspace. You can access all your Databricks assets using the sidebar. The sidebar’s contents depend on the Selected persona: Data Science & Engineering, Machine Learning, or SQL.
-  
-
-1. **Select** persona: Machine Learning
-  
-
-![abcdefgh](media/images/image3106.png)
-  
 
 By default, the sidebar appears in a collapsed state and only the icons are visible. Move your cursor over the sidebar to expand to the full view.
   
-
-2. **Navigate** to the “ML Solutions in OneBox” notebook.
+1. **Click on** Workspace 
+2. **Click** on “ML Solutions in OneBox” notebook.
   
 
 ![abcdefgh](media/images/image3107.png)
 
-  
-A Databricks cluster is a set of computation resources and configurations on which you run data engineering, data science, and data analytics workloads, such as production ETL pipelines, streaming analytics, ad-hoc analytics, and machine learning.
-    
 
-3. **Navigate** to **Requirements** in cmd 3.
-  
+Let's start by examining the customer churn data. 
 
-![abcdefgh](media/images/image3110.png)
-  
-
-In this cell we install all the dependencies required by the notebook.
-
-  
-The customer churn data is coming from teradata (external storage) to Azure data lake storage (ADLS). then we are loading customer subscription data to ADB Delta table.
-
-
-Let's start by examining the customer churn effect on the tenure of the month and the total amount spent. As a result, can see the low churn rate if customer tenure is high and they spend more amount.
-  
-
-4. **Navigate** to **Exploratory Data Analysis** in cmd 11.
+3. **Navigate** to **Exploratory Data Analysis** in cmd 11.
   
 
 ![abcdefgh](media/images/image3111.png)
-  
 
-5. **Navigate** to cmd 23, cmd 24 and cmd 25.
-
-
-![abcdefgh](media/images/image3114.png)
-  
+With the prepared data, they examined the customer churn effect as related to the tenure of the month and the total amount spent by them. Here we can see, a low churn rate in cases where customer tenure is high and where they spend more with Wide World Importers. 
 
 We will use the popular xgboost library to train a more accurate model. One way to improve a model’s perfomance is to test different hyperparameters. Rather than doing this through trial and error, Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time, using Hyperopt and SparkTrials. As before, the code tracks the performance of each parameter configuration with MLflow.
   
 
-6. **Point** to cmd 29.
+4. **Point** to cmd 29.
   
 
 ![abcdefgh](media/images/image3115.png)
   
 
 You can visualize the different runs using a parallel coordinates plot, which shows the impact of different parameter values on a metric here.
+Here we can see a comparison among different model runs and select the most optimal model run for our prediction. 
 
-  
-7. **Go to** cmd 27 and cmd 28  to retrieve the **best run**.
-
-
-![abcdefgh](media/images/image3116.png)
-  
-
->**Note**: Because all of the runs are tracked by MLflow, you can retrieve the metrics and parameters for the best run using the MLflow search runs API to find the tuning run with the highest AUC. 
- 
-
-The code finds the best performing run and saves the model-to-Model Registry. In this case, AUC is a primary metric, and the best-performing model is Selected for production deployment. If the latest model performs better than earlier deployed models, the new model is deployed to the production environment and the old model gets archived. If the latest model gives a lesser AUC score, then the previously deployed model remains in the production environment. 
-
-
-8. **Go to** cmd 30, cmd 31 and cmd 32 to register model in **Model Registry**.
-   
-
-![abcdefgh](media/images/image3117.png)
-
-
-Before we can invoke the model from Databricks using a REST endpoint, we need to enable the endpoint. 
-
-
-Once we have registered the model and enabled serving, we can then call on it using an endpoint and an access token.
-  
-
-9. **Go to** to cmd 38 to show making request to the **model endpoint**.
-
-  
-![abcdefgh](media/images/image3118.png)
   
 
 **Operationalized as an ML service using MLOps in Azure ML/AI**.
 
 
-10. **Navigate** to cmd 44 to load Azure ML Workspace.
+5. **Navigate** to cmd 44 to load Azure ML Workspace.
   
 
 ![abcdefgh](media/images/image3119.png)
 
-
-This cell shows model being registered in aml workspace. 
-
-
-11. **Go to** to cmd 55 to register model in Azure ML workspace.
-  
-
-![abcdefgh](media/images/image3120.png)
-
-
-Deployments can be generated using both the Python SDK for MLflow or MLflow CLI. In both cases, a JSON configuration file can be indicated with the details of the deployment you want to achieve. If not indicated, then a default deployment is done using Azure Container Instances (ACI) and a minimal configuration. 
-
-
 The MLflow plugin azureml-mlflow can deploy models to Azure ML, either to Azure Kubernetes Service (AKS), Azure Container Instances (ACI) or Managed Endpoints for real-time serving. 
- 
 
-12. **Review**  cmd 58 to deploy registered model in Azure Managed Endpoints for real-time serving.
-
-
-![abcdefgh](media/images/image3121.png)
-
-
-We can validate that our Azure ML endpoint is up and running by submitting a test input. Inputs should be submitted inside a JSON payload containing a dictionary with key input_data. 
-
-
-13. **Navigate** to cmd 61 to get **Predicted Churn** from **Azure ML Endpoint**.
-
-
-![abcdefgh](media/images/image3122.png)
 
 
 **Twitter Sentiment Score Custom ML Model** 
 
+Next we have our twitter sentiment model, this model helps us analyzing the sentiment of customers based on things that are trending on social media like twitter. 
+These sentiment scores help us to curate the campaign for our target audience. 
 
-14. **Expand** sidebar, **Collapse** Customer Chur Model. and **Select** Twitter Sentiment Score Model.
+6. **Expand** sidebar, **Collapse** Customer Chur Model. and **Select** Twitter Sentiment Score Model.
 
 
 ![abcdefgh](media/images/image3123.png)
 
 
-We are building an XGboost model and logging our experiment run using MLflow. This will allow us to pick the best model from our training runs.  
-
-
-15. **Go to** cmd 74 to see train custom twitter model configuration.
-
-
-![abcdefgh](media/images/image3124.png)
-
-
-16. **Navigate** cmd 74 to check ML model pipeline setup.
-
-
-![abcdefgh](media/images/image3125.png)
-
-
-17. **Navigate** to cmd 75 for custom model train and validation.
+7. **Navigate** to cmd 75 for custom model train and validation.
 
 
 ![abcdefgh](media/images/image3126.png)
 
+Here the sentiment model trained for further consumption
 
-18. **Go to** cmd 77 and cmd 79 to save model run id in a **VIEW** that can be used in another notebook. 
-
-
-![abcdefgh](media/images/image3127.png)
 
 
 **Campaign Analytics**  
 
 
-19. From the sidebar **Select** Campaign Analytics.
+8. From the sidebar **Select** Campaign Analytics.
 
 
 ![abcdefgh](media/images/image3128.png)
 
 
-We can see the data that we have available after we have run the campaign on Twitter. We can perform some analysis on this data 
+Using the sentiment model we trained in previous step, Wide World Importers decided to run various campaigns to reduce their churn and increae their revenue. 
 
-
-20. **Navigate** to cmd 88.
+9. **Navigate** to cmd 88.
 
 
 ![abcdefgh](media/images/image3129.png)
 
 
-By aggregating our dataset, we can get insights on different scales. In this case we are investigating the revenue per country/region 
-
-
-21. **Navigate** to cmd 91.
-
-
-![abcdefgh](media/images/image3130.png)
-
-
-We can also use Structured Streaming to perform aggregations over a sliding event-time window. 
-
-
-22. **Navigate** to cmd 94 and cmd 95.
-
-
-![abcdefgh](media/images/image3131.png)
-
 
 **Sales Forecasting** 
 
 
-23. From the sidebar **Select** Sales Forecasting.
+10. From the sidebar **Select** Sales Forecasting.
 
 
 ![abcdefgh](media/images/image3132.png)
 
-
+To confirm that their approach to reduce churn and improve sales has worked, Wide World Importers decide to use a sales forecast model.
 We will now be looking at the scenario where we are forecasting sales using a Regression model and deploying it to Azure ML as a service using a model registered in Azure Databricks.
 
 
-Before we can build our model, we need to load our data from the database using a SQL query. 
-
-
-We split our data into training and test datasets for future use, we can save them as delta tables in Databricks.
-
-
-24. **Navigate** to cmd 108 to Load the Dataset from table.
-
-
-![abcdefgh](media/images/image3133.png)
-
-
-Now that we have done our pre-processing, we can move onto building and deploying our machine learning model on Azure ML.
-
-
-25. **Point** to cmd 115 to build a Regression model using SKlearn, and log our run using MLflow to track model performance metrics.
-
-
-![abcdefgh](media/images/image3134.png)
-
-
-Ensure the model is registered in Azure Machine Learning registry. Deployment of unregistered models is not supported in Azure Machine Learning. You can register a new model using the MLflow SDK. 
-
-
-26. **Go** to the cell 119 and cmd 120 to register model in AML workspace.
-
-
-![abcdefgh](media/images/image3135.png)
-
-
-Once the model is trained and registered, we can create a deployment in Azure ML to serve the model via a REST API. This will allow us to operationalize our model and serve it to a wider audience.
-
-
-27. **Point** to the cell 127 where model deployment is being created.
+11. **Point** to the cell 127 where model deployment is being created.
 
 
 ![abcdefgh](media/images/image3136.png)
 
+Here the model gets deployed to Azure ML Endpoint. It can be consumed further for predicting the sale.
 
-Data stored in a Databricks Delta Table is a secure csv file format that is an encoded layer over data. These stale data files and logs of transactions are converted from ‘csv’ to ‘ Delta ’ format to reduce custom coding in the Databricks Delta Table. 
-
-
-28. **Navigate** to Cmd 129 to see **sales forecasting**.
-
-
-![abcdefgh](media/images/image3137.png)
-
-
-29. **Point** to cmd 133 to see sales forecast using store data after campaign 
+12. **Point** to cmd 133 to see sales forecast using store data after campaign 
 
 
 ![abcdefgh](media/images/image3138.png)
 
-
+After all the analysis, Wide World Importers is able to predict positive sales forcast and a successfull year ahead. 
 ----------
 
 #### Task 3.2: Implement a Power BI report to analyse data in the Lakehouse. <a name="power-bi-report-to-analyse-data-in-the-Lakehouse"></a>
