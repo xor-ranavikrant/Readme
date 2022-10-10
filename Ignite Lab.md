@@ -475,7 +475,7 @@ In this task, you will create a Delta Live Table pipeline.
 
 ![Wating for the job to complete](media/images/image2317.png)
 
-*Once the job has completed. The lab insrtuctor will share with you the pipeline lineage. Please follow the lab instructor for further steps for task 2.3.*
+*The lab insrtuctor will share with you the pipeline lineage. Please follow the lab instructor to understand the pipeline lineage in detail.*
 
 10. **Observe** the data lineage of Bronze, Silver and variety of Gold tables.
 
