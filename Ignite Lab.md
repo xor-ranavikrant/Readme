@@ -159,16 +159,6 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 >**Note:** Other Azure services use KQL for analytical queries. These services include Azure Monitor logs, Application Insights, and Microsoft Defender for Endpoint.
 
 
-22.	Hover the cursor over the URI property, and then select the **Copy** icon to copy the URI to the clipboard.
-
-![Select the Data Explorer pool resource](media/images/image1123.png)
-
-23.	To open **Data Explorer Studio**, open a new web session (tab).
-
-24.	In the new web session (tab), paste the URI into the address bar, and then press **Enter**.
-
-![Paste the URI into the address bar](media/images/image1125.png)
-
 25.	In Azure Data Explorer Studio, in the left pane, select the **Data** hub icon.
 
 26.	In the **Data Management** page, select the **Ingest data** action.
