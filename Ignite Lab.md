@@ -48,8 +48,7 @@ In this Exercise you will act as a Data Engineer. Rupesh would like you to impro
 - Enable quick turnaround time (Velocity).
 - Support open standards data format (Variety).
 
-..
-  
+ 
 ---
  
 
@@ -82,36 +81,36 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 ![Azure zredentials for the lab session](media/images/imageAzureCredentials.png)
 
 
-4.	If prompted to stay signed in, select **Yes**.
+5.	If prompted to stay signed in, select **Yes**.
 
 
   ![On sign in, select Yes or No](media/images/image1104.png)
 
 
-5.	If prompted to take a tour, select **Maybe Later**.
+6.	If prompted to take a tour, select **Maybe Later**.
 
  ![If prompted to take a tour, select Maybe Later](media/images/image1105.png)
 
 
- 6. In the search results pane, select **Resource groups**.
+ 7. In the search results pane, select **Resource groups**.
 
 ![In the search results pane, select the Resource group](media/images/image1107.png)
 
-7. In the **Resource groups** page, in the filter box, enter: **analyticsSolution**.
+8. In the **Resource groups** page, in the filter box, enter: **analyticsSolution**.
 
-8.	In the filtered results, select the resource group that has a name starting with **analyticsSolution-**.
+9.	In the filtered results, select the resource group that has a name starting with **analyticsSolution-**.
 
   >**Note:** Each student has their own unique instance of this resource.
 
 ![In the filtered results, select the resource group](media/images/image1109.png)
 
-9. In the resources filter box for resources, search for **app**.
+10. In the resources filter box for resources, search for **app**.
 
-10. In the filtered results, select the App Service.
+11. In the filtered results, select the App Service.
 
 ![Select the app service](media/images/imageAppServices.png)
 
-11. Select **Browse** (on the top left )
+12. Select **Browse** (on the top left )
 
 *This action will start the data simulation required to execute this task successfully*.
 
@@ -119,34 +118,35 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 ![Select Browse](media/images/imageclickBrowse.png)
 
-12. Return to the Azure Portal session.
+13. Return to the Azure Portal session.
 
-12.	In the resources filter box for resources, search for **Synapse**.
+14.	In the resources filter box for resources, search for **Synapse**.
 
-13.	In the filtered results, select the Azure Synapse resource.
+15.	In the filtered results, select the Azure Synapse resource.
 
 ![In the filtered results, select the Azure Synapse resource](media/images/image1114.png)
 
 *Note: You might see Synapse workspace resource name with a different suffix in your Azure Portal.*
 
-14. In the Open Synapse Studio tile, select the Open link.
+16. In the Open Synapse Studio tile, select the Open link.
 
 
 ![Open Synapse studio](media/images/image1115.png)
 
 >**Note:** Synapse Studio opens in a new web session (tab).
 
-15.	In Synapse Studio, at the left, select the **Data** hub icon (the second from the top).
+17.	In Synapse Studio, at the left, select the **Data** hub icon (the second from the top).
 
-16.	In the **Data** pane, expand **Data Explorer Databases (Preview).**
+18.	In the **Data** pane, expand **Data Explorer Databases (Preview).**
 
-17.	Expand the **ignitekustopool** Data Explorer pool.
+19.	Expand the **ignitekustopool** Data Explorer pool.
 
-18. Select the **ellipses** (the three dots next to the data explorer pool).
+20. Select the **ellipses** (the three dots next to the data explorer pool).
+>**Note:** If you do not see the ellipses, expand the Data pane by dragging it to the right. 
 
 ![Expand Data Explorer Pool](media/images/image1118.png)
 
-19. Select the **Open in Azure Data Explorer**.
+21. Select **Open in Azure Data Explorer**.
 
 *This will open Azure Data Explorer in a new web session (tab).*
 
@@ -154,103 +154,110 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 *For this lab, an ADX pool has already been created in the Azure Synapse workspace.*
 
-*By using ADX’s powerful Kusto Query Language (KQL), you can inspect your temperature data for anomalies. You can also ensure that the thresholds you have set for each device in the store is being honored.*
+*By using ADX’s powerful Kusto Query Language (KQL), you can ensure that the thresholds you have set for each device in the store is being met.*
 
 >**Note:** Other Azure services use KQL for analytical queries. These services include Azure Monitor logs, Application Insights, and Microsoft Defender for Endpoint.
 
 
-25.	In Azure Data Explorer Studio, in the left pane, select the **Data** hub icon.
+22.	In Azure Data Explorer Studio, in the left pane, select the **Data** hub icon.
 
 26.	In the **Data Management** page, select the **Ingest data** action.
 
 ![Paste the URI into the address bar](media/images/image1127.png)
 
-27.	In the **Destination** tab, in **Cluster** dropdown list, select the Data Explorer pool.
+23.	In the **Destination** tab, in **Cluster** dropdown list, select the Data Explorer pool.
 
-![selecting cluster](media/images/imageClusterSelect.png)
+>**Note:** If you do not see any Data Explorer Pool in **Cluster** dropdown, select **Add Cluster**.
 
+> ![Add Cluster](media/images/imageAddCluster.png)
 
-      >**Note:** If you do not see any Data Explorer Pool in **Cluster** dropdown, select **Add Cluster**.
+> Navigate to the Azure Synapse web session (tab), select **Manage** hub from the left pane.
 
-      > ![Add Cluster](media/images/imageAddCluster.png)
-	  
-	  > Navigate to your Synapse tab, click on manage tab, click on data explorer pools, click on the igniteKustopool, copy the ingestion url.
-	  
-	  > ![manage tab](media/images/manageTab.png)
-      
-	  > Go back to the data explorer tab, in the **Connection URI**, enter the URI copied above.
+> Select the **Data explorer pools (preview)** from the **Analytics pool** pane.
 
-      > Select **Add**.
+> Select the **igniteKustopool-**.
 
-      > ![click Add](media/images/imageClickAdd.png)
-          
+> ![manage tab](media/images/imageManageHub.png)
 
+> Under the **Query endpoint** copy the **URL** and select **Close** to close the pane.
 
-28.	In the **Table** box, enter **Thermostat**.
+> ![Copy URI](media/images/imageCopyURI.png)
 
-29.	Select **Next: Source.**
+> Go back to the data explorer tab, in the **Connection URI**, enter the URI copied above.
+
+> Select **Add**.
+
+> ![click Add](media/images/imageClickAdd.png)
+     
+24.	In the **Table** box, enter **Thermostat**.
+
+25.	Select **Next: Source.**
 
 ![Click Next](media/images/image1131.png)
 
-30.	In the **Source** tab, in the **Source** dropdown list, select **Event Hub**.
+26.	In the **Source** tab, in the **Source** dropdown list, select **Event Hub**.
 
-31.	In **Subscription** dropdown list, select your subscription.
+27.	In **Subscription** dropdown list, select your subscription.
 
 ![Select Eventhub](media/images/imageSelectEventhub.png)
 
-32.	In the **Event Hub namespace** dropdown list, select Event Hub that has a name starting with **adx-thermostat-occupancy-**.
+28.	In the **Event Hub namespace** dropdown list, select Event Hub that has a name starting with **adx-thermostat-occupancy-**.
 
-33.	In the **Event Hub** dropdown list, select **thermostat**.
+29.	In the **Event Hub** dropdown list, select **thermostat**.
 
-34.	In **Data connection name** dropdown list, select **IgniteDB-thermostat**.
+30.	In **Data connection name** dropdown list, select **IgniteDB-thermostat**.
 
-35.	In the **Consumer group** dropdown list, select **$Default**.
+31.	In the **Consumer group** dropdown list, select **$Default**.
 
-36.	In **Compression** dropdown list, select **None**.
+32.	In **Compression** dropdown list, select **None**.
 
-37.	Select **Next: Schema**.
+33.	Select **Next: Schema**.
 
 ![Click Next](media/images/image1139.png)
 
-38.	In the **Schema** tab, wait until the data preview loads (about 20 seconds).
+34.	In the **Schema** tab, wait until the data preview loads (about 20 seconds).
 
-39.	Review the event data, which comprises thermostat measures from different devices.
+35.	Review the event data, which comprises thermostat measures from different devices.
 
-40.	In the **Data** format dropdown list, select **JSON.**
+36.	In the **Data** format dropdown list, select **JSON.**
 
-41.	Select **Next: Start ingestion.**
+37.	Select **Next: Start ingestion.**
 
 ![Click Next](media/images/image1143.png)
 
-42.	Confirm that the continuous ingestion from Event Hub has been established, and then select **Close** (located at the bottom of the page).
-
-43. Return to the Synapse Studio web session (tab).
+38.	Confirm that the continuous ingestion from Event Hub has been established, and then select **Close** (located at the bottom of the page).
 
 ![Select Close](media/images/image1144.png)
 
-44. In Synapse Studio, at the left, select the **Develop** hub icon (the third from the top).
+39. Return to the Synapse Studio web session (tab).
 
-45. In the **Develop** pane, expand **KQL scripts**.
+40. In Synapse Studio, at the left, select the **Develop** hub icon (the third from the top).
 
-46. Select the **ThermostatOccupancyScript** script.
+41. In the **Develop** pane, expand **KQL scripts**.
+
+42. Select the **ThermostatOccupancyScript** script.
 
 ![Select the ThermostatOccupancyScript Sript](media/images/image1148.png)
 
-47. In the **Connect to** dropdown list, select the data explorer pool.
+43. In the **Connect to** dropdown list, select the data explorer pool.
 
-48. In the **Use database** dropdown list, select **IgniteDB**.
+>**Note:** If required, collapse the panes on the left using the << icon at the top right of each pane.
 
-49.	Select the query (lines 4-8) that is commented as **What is the average temp every minute?**.
+44. In the **Use database** dropdown list, select **IgniteDB**.
 
-*The query retrieves the average temperature per minute for Miami store device (TH005).*
+45.	Select the query (lines 4-8) that is commented as **What is the average temp every minute?**.
 
-50.	Select **Run**. 
+*The query retrieves the average temperature per minute for a thermostat device (TH005) for the Miami store.*
 
-51.	In the **Results** pane (located along the bottom), review the query result expressed as a chart.
+46.	Select **Run**. 
+
+47.	In the **Results** pane (located along the bottom), review the query result expressed as a chart.
 
 ![Review the query result ](media/images/image1152.png)
 
-52.	Notice that the temperature in the Miami store is oscillating between 66 and 68. Also notice that, thanks to ADX, and anomaly detection: As soon as the in-store traffic causes any unanticipated spikes in temperature, store temperatures are automatically cooled down for a more pleasant shopping experience. Through continuous temperature monitoring Wide World Importers are able to improve their in-store customer shopping experience.
+*Your graph me appear slightly different than the one shown above. It may take up to 60 seconds to load.*
+
+48.	Notice that the temperature in the Miami store is oscillating between 65 and 70 degrees Fahrenheit. Also notice that as soon as any unanticipated spike occurs in the store temperature, it is automatically cooled down using ADX.
 
 ---
 
@@ -259,12 +266,9 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 #### Task 1.2: Explore a few Synapse pipelines that ingest data from analytical data sources to the Bronze layer of the lake. <a name="analytical-sources"></a>
 
   
-Now that you have helped Wide World importers ingest real-time data into the Lakehouse, it has enabled a pleasant shopping experience for their customers during the Thanksgiving sale, your next challenge is to ingest historical data. To do that, consider what happened on September 5, 2021, the day when the traditional campaigns failed. On this day, a lot of historical raw data came from various operational and data analytics sources into the data lake. This data came from both traditional relational and analytical databases, as well as structured files such as CSV, semi - structured files such as JSON, and even unstructured binary files such as images and PDFs.
+Your next challenge is to ingest historical data from a spectrum of data sources.  
 
-Some of the data subject areas that you will ingest into the Lakehouse for analysis will be campaign data from Snowflake, in-store transactional data from Azure SQL Database, online sales data from Oracle, and churn data from Teradata. You will now explore some Azure Synapse pipelines that enable ingestion of data from these historical sources to the Bronze layer of the Lakehouse (ALDS Gen2).
-
-
-In this task, you will explore the design of two Synapse pipelines that are designed to ingest raw data coming from various analytical sources into the data lake.
+In this task you will ingest campaigns data from Snowflake and customer churn data from Teradata into the data lake.
 
 1. Return to the Synapse Studio web session (tab).
 
@@ -278,10 +282,13 @@ In this task, you will explore the design of two Synapse pipelines that are desi
 
 6. Select the **Campaigns Data From Snowflake** pipeline.
 
+>**Note:** If required, collapse the panes on the left using the << icon at the top right of each pane.
+
 ![Campaigns data from Snowflake ](media/images/image1206.png)
 
 
 *The ***Campaigns Data from Snowflake*** pipeline has two activities. The first one runs a lookup of data at the source Snowflake connection. The next activity brings that data into the Bronze layer in ADLS Gen2.*
+
 
 7.	In the pipeline designer, select Lookup activity.
 
@@ -297,12 +304,11 @@ In this task, you will explore the design of two Synapse pipelines that are desi
 
 12.	In the **Sink dataset** dropdown list, notice that **SnowflakeCampaignsData** is selected.
 
-
 ![Sink Dataset](media/images/image1212.png)
 
-*Similarly, another pipeline is designed for Customer churn data from Teradata.*
+*Similarly, the next pipeline is designed to ingest customer churn data from Teradata to the data lake.*
 
->**Note:** The image is for informational purposes only. Due to time constraints, we may not be able to explore it in the lab.
+>**Note:** The image is for informational purposes only. Due to time constraints, we will not explore it in the lab.
 
 ![CustomerChurn Data From Teradata](media/images/image1213.png)
 
@@ -313,15 +319,15 @@ In this task, you will explore the design of two Synapse pipelines that are desi
 #### Task 1.3: Explore a few Synapse pipelines that ingest data from operational data sources to the Bronze layer of the lake. <a name="operational-sources"></a>
 
   
-In this task, you will explore the design of two Synapse pipelines that are designed to ingest raw data coming from various operational sources into the data lake.
-
+In this task, you will explore the design of a Synapse pipeline that is designed to ingest raw data coming from various operational sources into the data lake.
 
 1.	In the **Integrate** pane, in the **Landing Operational Store Data** folder, select the **Store Transactions Data from SQL DB** pipeline.
 
 ![Landing Operational Store Data](media/images/image1309.png)
 
-
 *The **Store Transactions Data from SQL DB** pipeline has two activities. The first one runs a lookup of data at the source Azure SQL Database connection. The next activity brings that data into the Bronze layer in ADLS Gen2*.
+
+>**Note:** If required, collapse the panes on the left using the << icon at the top right of each pane.
 
 2.	In the pipeline designer, select the Copy data activity.
 
@@ -331,23 +337,24 @@ In this task, you will explore the design of two Synapse pipelines that are desi
 
 ![Sink dataset](media/images/image1312.png)
 
-*Similarly, another pipeline is designed for Sales data from Oracle.*
+*Similarly, the next pipeline is designed to ingest Sales data from Oracle to the data lake.*
 
->**Note:** The image is for informational purposes only. Due to time constraints, we may not be able to explore it in the lab.
+>**Note:** The image is for informational purposes only. Due to time constraints, we will not explore it in the lab.
 
 ![Sales Data](media/images/image1302.png)
 
 
-Congratulations! As data engineers you have successfully ingested streaming real time as well as historical data for Wide World importers.
+Congratulations! As a data engineer you have successfully ingested streaming near real time as well as historical data into data lake for Wide World importers.
 
 -----------
 
-### Exercise 2: Explore offline data and analytics pipeline using ADB Delta and Delta Live Tables. Land data from streaming pipe in the Lake and connect with non-streaming data to build a simple Lakehouse to serve Exercise 3. <a name="delta-live-table-pipeline"></a>
-Analyzing disparate data sources in an integrated way has been a challenge for Wide World Importers. In the past, different teams at the company were assigned to analyze customer churn, social media trends, marketing campaigns, and sales forecasts. So, it was left to business analysts and executives to synthesize these datasets into a data-driven decision making solution. By delivering a Lakehouse with Azure Databricks and Azure ML, it will become simple for teams to collaborate on a unified workspace to process, analyze, and model data.
+### Exercise 2: Explore offline data and analytics pipeline using ADB Delta and Delta Live Tables. Land data from streaming pipe in the Lake and connect with non-streaming data to build a simple Lakehouse to generate actionable insights in Exercise 3. <a name="delta-live-table-pipeline"></a>
 
-In this exercise, you will stitch sets of data together to support meaningful insights. You will set up an Azure Databricks Delta Live Table (DLT) pipeline to build a simple Lakehouse. The pipeline will enrich the data by scoring it with machine learning models to help better understand customers and how to improve service.
+Analyzing disparate data sources in an integrated way has been a challenge for Wide World Importers. In the past, different teams at the company were assigned to analyze customer churn, social media trends, marketing campaigns, and sales forecasts. So, it was left to business analysts and executives to synthesize these datasets into a data-driven decision making solution. By delivering a Lakehouse, it will become simple for teams to collaborate on a unified workspace to process, analyze, and model data.
 
-The data source for the pipeline is the Bronze layer in ADLS Gen2, which was loaded by the Synapse pipeline in Exercise 1. This layer stores Twitter messages, customer subscription data, traditional campaigns data (which failed on September 5), and store transactions data.
+In this exercise, you will stitch two sets of data together to generate actionable insights. You will set up an Azure Databricks Delta Live Table (DLT) pipeline to build a simple Lakehouse. The pipeline will enrich the data by scoring it with machine learning models to help better understand customers and how to reduce churn.
+
+The data source for the pipeline is the Bronze layer in ADLS Gen2, which was loaded by the Synapse pipeline in Exercise 1. This Bronze layer contains campaigns data, customer churn data, store transactions data, sales data and Twitter messages.
 
 #### Task 2.1: Set up Azure Databricks environment
 
@@ -369,20 +376,28 @@ In this task, you will set up the Azure Databricks environment.
 
 *A new web session (tab) opens. You will then set up the Databricks compute ready to serve your workload.*
 
->**Note:** If you are see an error, refresh the page. Continue to sign in with the credentials provided to you.
+>**Note:** If you see an error, refresh the page. Continue to sign in with the credentials provided to you.
 
 > ![Azure Databricks error](media/images/imageDatabricksError.png)
 
 
-5. Observe the **ADB_Initial_Setup** workspace.
+>**Note:** If you see a pop-up, select **Close**.
+
+5. Select **Workspace** from the left navigation pane.
+
+6. Select the **ADB_Initial_Setup** workspace.
+
+> **Note: DO NOT** run this script. 
+> This image is for informational purposes only. 
+> Due to time constraints, we will not run this notebook in the lab session.
 
 ![ADB_Initial_Setup](media/images/image2107.png)
 
-*Executing this script will mount ADLS Gen2 to Azure Databricks.*
+
+*In exercise 1, we extracted data from a spectrum of data sources and landed it into ADLS Gen 2 data lake. To access this data from ADLS Gen2 data lake, we need to mount it on Azure Databricks filesystem. Executing this script will mount ADLS Gen2 to Azure Databricks.*
 
 
-
-#### Task 2.2: Execute sentiment analysis model training
+#### Task 2.2: Review sentiment analysis model training
 
 In this task, you will explore the sentiment analysis model training notebook. This notebook is used to retrieve the model ID that’s used by the DLT pipeline for further data processing.
 
@@ -394,18 +409,21 @@ In this task, you will explore the sentiment analysis model training notebook. T
 
 ![Twitter_Sentiment_Score_Pred_Custom_ML_Model](media/images/image2202.png)
 
-*Running this script will generate the ML model ID.*
+> **Note: DO NOT** run this script.
+> This image is for informational purposes only.
+> Due to time constraints, we will not run this notebook in the lab session.
 
-> **Note:** This image is for informational purposes only. Due to time constraints, we will not run this notebook in the lab session.
+*Running this script will generate a ML model ID. This Model ID is used by the Delta Live Pipeline that we will create in the next task to perform ML operations on Twitter data.* 
+
 
 
 #### Task 2.3: Create a Delta Live Table pipeline
 
-In this task, you will learn to create a Delta Live Table pipeline.
+In this task, you will create a Delta Live Table pipeline.
 
-*Azure Databricks Delta Live Tables (often referred to as DLT) is the choice of compute engine for code-first transformation. Once the data is curated, purpose-built engines can be further utilized, enabling a single source of data accessible by each engine/compute head.*
+*Delta Live Tables (DLT) makes it easy to build and manage reliable data pipelines that deliver high-quality data on Delta Lake. DLT helps data engineering teams simplify ETL development and management with declarative pipeline development, automatic data testing, and deep visibility for monitoring and recovery.*
 
-1.	At the left, select the **Workflows** icon (the last icon).
+1.	At the left, select the **Workflows** icon.
 
 ![Select Workflows](media/images/image2301.png)
 
@@ -427,123 +445,123 @@ In this task, you will learn to create a Delta Live Table pipeline.
 
 6.	In the **Select a notebook** window, select the **03_Sentiment_Analytics_On_Delta_Live_Tables** notebook.
 
-7.	Select **Select**.
+>**Note:** Due to time constraints, we will add only **03_Sentiment_Analytics_On_Delta_Live_Tables** notebook library to the pipeline in the lab session.
 
-![Select select](media/images/image2307.png)
+![Select Notebook](media/images/imageSelectNotebook.png)
 
-
-
-*Similarly, we can add the other three notebooks.*
-
+**(TO BE SKIPPED)** : *Similarly, we can repeat steps 5 and 6 to add the other three notebook libraries.* 
+ 
 - 01_campaign_analytics_DLT
 - Campaign Powered by Twitter
 - Retail Sales Data Prep Using Spark DLT
 
-  >**Note:** Due to time constraints, we have already added these notebook libraries to the pipeline.
-        
-8.	In the **Storage location** box, enter: **/mnt/delta-files/dlt/**
+      
+7.	In the **Storage location** box, enter: **/mnt/delta-files/dlt/**
 
-9.	In the **Target** box, enter: **lakedb**
+8.	In the **Target** box, enter: **lakedb**
 
-10. Select **Create**.
+9. Select **Create**.
 
 ![Select Create](media/images/image2315.png)
 
-*Selecting **Start** will start creating the pipeline. The job completes takes approximately 7-10 minutes.*
+
+*Once you select **Create**, it will create the Delta Live Table pipeline with all the notebook libraries added to the pipeline.*
+
+> **Note: DO NOT** select **Start**.
+
+*If you click on **Start**, Databricks will start executing the pipeline which will take approximately 10 minutes.*
 
 > **Note:** The following instructions are for informational purposes only. Due to time constraints, we will not start the pipeline in the lab session.
 
 ![Wating for the job to complete](media/images/image2317.png)
 
-*You have now added the ML notebooks to the DLT pipeline.*
+*Once the job has completed. The lab insrtuctor will share with you the pipeline lineage. Please follow the lab instructor for further steps for task 2.3.*
 
-This pipeline is based on the medallion architecture, an extremely simple but powerful design pattern for organizing your Lakehouse.
-
-“Bronze” data is usually raw, unprocessed data from source systems.
-
-“Silver” data is created by cleaning and organizing raw data for further analysis and exploration.
-
-“Gold” data are the finished analytical products – star schema tables for BI applications, engineered features for ML models, and shareable data assets for third parties, Data Mesh architectures, and other downstream consumers.
-
-As you can see in this diagram, all the data is first landed in the Lakehouse where it is further processed into different medallion layers as discussed earlier.
-
-The Twitter sentiment and campaigns data is stitched together to create a combined data product which is further consumed in the next exercise for ML and BI use cases.
-
-All the tables and machine learning models created in Azure Databricks are governed in Databricks' Unity Catalog, which captures lineage, metadata, access controls, and a full audit history.
-
-This information can then be piped into Microsoft Purview as part of an overall view of your Azure data estate. By being designed around simplicity, openness, and collaboration, the Lakehouse is an extremely powerful architecture for addressing the many unique and interesting problems of a modern cloud data stack ready to be leveraged by Wide World Importers.
-
-
-11. **Observe** the data lineage of Bronze, Silver and variety of Gold tables.
+10. **Observe** the data lineage of Bronze, Silver and variety of Gold tables.
 
 ![Medallion Architecture](media/images/image2318.png)
 
+This pipeline is based on the medallion architecture, an extremely simple but powerful design pattern for organizing your Lakehouse.
+
+**Bronze** data is usually raw, unprocessed data from the source systems.
+
+**Silver** data is created by cleaning and organizing raw data for further analysis and exploration.
+
+**Gold** data is the finished analytical products – star schema tables for BI applications, engineered features for ML models, and shareable data assets for third parties, Data Mesh architectures, and other downstream consumers.
+
+As you can see in this diagram, all the data is first landed in the Lakehouse where it is further processed into different medallion layers as discussed earlier.
+
+The Twitter sentiment and campaigns data is stitched together to create a combined data product which is further consumed in the next exercise for Machine Learning and Business Intelligence use cases.
+
+This information can be then piped into Microsoft Purview as a part of an overall view of your Azure data estate. By being designed around simplicity, openness, and collaboration, the Lakehouse is an extremely powerful architecture for addressing the many unique and interesting problems of a modern cloud data stack ready to be leveraged by Wide World Importers.
 
 
-Congratulations! As data engineers, you have now set up a solid foundation of fully stitched data comprised of historical and streaming realtime data from disparate sources including some key data transformations.
+
+
+Congratulations! As a data engineer, you have now set up a solid foundation of fully stitched data comprised of campaigns data and Twitter data from disparate sources including some key data transformations.
 
 ----
 
 ### Exercise 3: Data Science and Analytics on the Lakehouse <a name="data-science-and-analytics-on-the-Lakehouse"></a>
-#### Task 3.1: Explore an ML model implemented using ADB managed MLflow and operationalized as an ML service using MLOps in Azure ML/AI. <a name="ml-model-using-mlflow"></a> 
 
-Architecture diagram shows the end-to-end MLOps pipeline using the Azure Databricks managed MLflow. 
+
+#### Task 3.1: MLOps pipeline using the Azure Databricks managed MLflow
+
+The following architecture diagram shows the end-to-end MLOps pipeline that uses managed MLflow on Azure Databricks. After multiple iterations with various hyperparameters, the best performing model in Databricks MLflow model was registered and set up in Azure Databricks Workspace and Azure ML Workspace to support low-latency requests.
+
 Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a given customer will churn.
 
-We would also like to understand out customer's sentiment better, so as to create targeted campaign and improve our sales. 
+We would also like to understand our customer's sentiment, so as to create targeted campaigns to improve our sales. 
 
-For a data science team charged with creating this model, they will usually undergo a set of key tasks: 
 
-- Exploring data to understand any interesting patterns that can be found, and its potential for training such a model
-- Running tools such as a hyperparameter sweep to identify the best performing algorithm for the model
-- Validating the model against a holdout dataset, and registering the model.
-- Deploying the model to production to identify churn candidates and take preventive actions
-  
-
-![abcdefgh](media/images/image3100.png)
+![MLOps pipeline using the Azure Databricks managed MLflow](media/images/image3100.png)
  
 
-**Steps:**
 
-By default, the sidebar appears in a collapsed state and only the icons are visible. Move your cursor over the sidebar to expand to the full view.
+*In Azure Databricks, everything starts with setting up a workspace. You can access all your Databricks assets by using the sidebar. The content in the sidebar depends on the selected persona, whether it’s Data Science & Engineering, Machine Learning, or SQL.*
   
-1. **Click on** Workspace 
-2. **Click** on “ML Solutions in OneBox” notebook.
+1.	In the Databricks web session (tab), which you opened in Exercise 2, in the left pane, in the top dropdown list, select the **Machine Learning** persona.
+
+*By default, the left pane appears in a collapsed state and only the icons are visible. You can hover your cursor over the pane to expand it to the full view.*
+
+![Select the persona](media/images/image3101.png)
+
+2. In the left pane, select the **Workspaces** icon (first icon), and then select the ML Solutions in OneBox workspace.
+
+    ![Select the workspaces](media/images/image3102.png)
+
+
+*In this task, you won’t run any cells. Instead, you will explore select cells and review their outcomes.*
+*You will start by examining the customer churn effect on the tenure of the month and the total amount spent. As a result, you will see the low churn rate when customer tenure is high, and they spend higher amounts.*
+
+3. Review the **cmd 11** cell, and then review the output for **Exploratory Data Analysis**.
   
+    ![cmd 11](media/images/image3103.png)
 
-![abcdefgh](media/images/image3107.png)
+*With the prepared data, we observe that customer churn effect is related to the tenure and the total amount spent by customers. Here we can see, a low churn rate in cases where customer tenure is high and where they spend more with Wide World Importers.*
 
-
-Let's start by examining the customer churn data. 
-
-3. **Navigate** to **Exploratory Data Analysis** in cmd 11.
-  
-
-![abcdefgh](media/images/image3111.png)
-
-With the prepared data, we observe that customer churn effect is related to the tenure and the total amount spent by customers. Here we can see, a low churn rate in cases where customer tenure is high and where they spend more with Wide World Importers. 
-
-We will use the popular xgboost library to train a more accurate model. Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time. The code tracks the performance of each parameter configuration with MLflow.
-  
-
-4. **Point** to cmd 29.
-  
-
-![abcdefgh](media/images/image3115.png)
+*We will use the popular xgboost library to train a more accurate model. Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time. The code tracks the performance of each parameter configuration with MLflow.*
   
 
-You can visualize the different runs using a parallel coordinates plot, which shows the impact of different parameter values on a metric here.
-Here we can see a comparison among different model runs and select the most optimal model run for our prediction. 
+4.  Review the **cmd 29** cell.
+  
+
+    ![Runs using a parallel coordinates](media/images/image3115.png)
+  
+
+*You can see the different runs using a parallel coordinates plot, which shows the impact of different parameter values on a metric.*
+*This is a comparison among different model runs and we select the most optimal model run for our prediction.* 
 
   
 
 **Operationalized as an ML service using MLOps in Azure ML/AI**.
 
 
-5. **Navigate** to cmd 44 to load Azure ML Workspace.
+5. Review the **cmd 44** cell to load Azure ML Workspace.
   
 
-![abcdefgh](media/images/image3119.png)
+    ![Load Azure ML workspace](media/images/image3119.png)
+
 
 The MLflow plugin azureml-mlflow can deploy models to Azure ML, either to Azure Kubernetes Service (AKS), Azure Container Instances (ACI) or Managed Endpoints for real-time serving. 
 
@@ -551,67 +569,68 @@ The MLflow plugin azureml-mlflow can deploy models to Azure ML, either to Azure 
 
 **Twitter Sentiment Score Custom ML Model** 
 
-Next we have our twitter sentiment model, this model helps us analyzing the sentiment of customers based on things that are trending on social media like twitter. 
-These sentiment scores help us to curate the campaign for our target audience. 
+*This model helps Wide World Importers analyze the sentiment of their customers based on what's trending on social media like Twitter. They use these sentiment scores to curate attractive campaigns to appeal to their targeted audience.* 
 
-6. **Expand** sidebar, **Collapse** Customer Chur Model. and **Select** Twitter Sentiment Score Model.
-
-
-![abcdefgh](media/images/image3123.png)
+6. In the left, select the small arrow to expand the sidebar, collapse the **Customer Churn Model** and select **Twitter Sentiment Score Model**.
 
 
-7. **Navigate** to cmd 75 for custom model train and validation.
+    ![Twitter sentiment score model](media/images/image3123.png)
 
 
-![abcdefgh](media/images/image3126.png)
+7. Review the **cmd 75** cell for customer model train and validation.
 
-Here the sentiment model trained for further consumption
+
+    ![Customer model train and validation](media/images/image3126.png)
+
+*Here the sentiment model is trained for further consumption.*
 
 
 
 **Campaign Analytics**  
 
 
-8. From the sidebar **Select** Campaign Analytics.
+8. From the sidebar, select **Campaign Analytics**.
 
 
-![abcdefgh](media/images/image3128.png)
+    ![Campaign Analytics](media/images/image3128.png)
 
 
-Using the sentiment model we trained in previous step, Wide World Importers decided to run various campaigns to reduce their churn and increae their revenue. 
+*Using the sentiment model we trained in cmd 75 cell, Wide World Importers decided to run various campaigns to reduce their churn and increae their revenue.*
 
-9. **Navigate** to cmd 88.
+9. Review the **cmd 88** cell.
 
 
-![abcdefgh](media/images/image3129.png)
+    ![cmd 88](media/images/image3129.png)
 
 
 
 **Sales Forecasting** 
 
 
-10. From the sidebar **Select** Sales Forecasting.
+10. From the sidebar, select **Sales Forecasting**.
 
 
-![abcdefgh](media/images/image3132.png)
+    ![Sales Forecasting](media/images/image3132.png)
 
-To confirm that their approach to reduce churn and improve sales has worked, Wide World Importers decide to use a sales forecast model.
-We will now be looking at the scenario where we are forecasting sales using a Regression model and deploying it to Azure ML as a service using a model registered in Azure Databricks.
+To validate their approach to reduce churn and improve sales, Wide World Importers decided to use a sales forecasting model.
 
-
-11. **Point** to the cell 127 where model deployment is being created.
+*You will now look at the scenario where you are forecasting sales using a Regression model and deploying it to Azure ML as a service using a model registered in Azure Databricks.*
 
 
-![abcdefgh](media/images/image3136.png)
-
-Here the model gets deployed to Azure ML Endpoint. It can be consumed further for predicting the sales.
-
-12. **Point** to cmd 133 to see sales forecast using store data after campaign 
+11. Review the **cmd 127** cell where model deployment is created.
 
 
-![abcdefgh](media/images/image3138.png)
+    ![Model Deployement](media/images/image3136.png)
 
-After all the analysis, Wide World Importers is able to predict positive sales forcast and a successfull year ahead. 
+*The model gets deployed to Azure ML endpoint. It can be consumed further for predicting the sales for Wide World Importers*.
+
+12. Review the **cmd 133** cell to see sales forecast using store data after the campaigns. 
+
+
+    ![Store data after the campaigns ](media/images/image3138.png)
+
+*All this analysis using MLOps enabled Wide World Importers to predict positive sales forecast and a successful year ahead*. 
+
 ----------
 
 #### Task 3.2: Implement a Power BI report to analyse data in the Lakehouse. <a name="power-bi-report-to-analyse-data-in-the-Lakehouse"></a>
@@ -627,7 +646,6 @@ In this task, you will work with Power BI to reveal valuable insights for Wide W
 
 ![Register on Power BI](media/images/image3202.png)
 
-
 *You may be redirected to a set up page.*
 
 3. If prompted, in the **Business phone number** enter:**1234567891**, select **Next**.
@@ -638,42 +656,42 @@ In this task, you will work with Power BI to reveal valuable insights for Wide W
 ![Enter a dummy number](media/images/imageDummyNumber.png)
 
 
-3.	If prompted, select **Get Started**.
+4.	If prompted, select **Get Started**.
 
 ![Get Started with Power BI](media/images/image3203.png)
 
 *You have now signed in to Power BI.*
 
-4. In the Power BI service, in the **Navigation** pane (at the left), select **Workspaces** (second icon from the bottom).
+5. In the Power BI service, in the **Navigation** pane (at the left), select **Workspaces** (second icon from the bottom).
 
-5. In the workspaces pane, select **My Workspace**.
+6. In the workspaces pane, select **My Workspace**.
 
 ![Select New Workspace](media/images/imageMyWorkspace.png)
 
-8. To upload a Power BI Desktop file, on the **New** dropdown menu, select **Upload**.
+7. To upload a Power BI Desktop file, on the **New** dropdown menu, select **Upload**.
 
 ![Select upload](media/images/image3208.png)
 
-9.	Select the **Local File** tile.
+8.	Select the **Local File** tile.
 
 ![Select upload](media/images/image3209.png)
 
-10.	In the **Open** window, navigate to the **C:\labfiles\Packaging\artifacts\reports** folder, and then select the **IgniteDemoReport.pbix** file.
+9.	In the **Open** window, navigate to the **C:\labfiles\Packaging\artifacts\reports** folder, and then select the **IgniteDemoReport.pbix** file.
 
-11.	Select **Open**.
+10.	Select **Open**.
 
 ![Upload report upload](media/images/imageFilePath.png)
 
-12.	Notice that a Power BI report and dataset have been added to your workspace.
+11.	Notice that a Power BI report and dataset have been added to your workspace.
 
 ![Power BI report added to your workspace.](media/images/image3212.png)
 
-14.	To open the report, select the **IgniteDemoReport** report.
+12.	To open the report, select the **IgniteDemoReport** report.
 
 
 ![Open the Ignite Report](media/images/image3228.png)
 
- 27. The report has 3 sections,
+13. The report has 3 sections,
  - Customer Churn Report
  - Campaign Analytics
  - Website Analytics
@@ -801,7 +819,7 @@ Per this Donut chart it seems that the bounce rate is high because around 60 % o
 
 Now lets move on to the next chart which shows some insights about the devices used by these millennials to shop online.
 
-1. On this column chart we can they most of our "Not Happy" Customers are browing our website on a mobile phone.
+1. On this column chart we can see that most of our "Not Happy" customers are browsing our website on a mobile phone.
    
 ![WebsiteAnalyticsPage](media/PowerBI-Images/websiteAnalytics-page4.png)
 
@@ -863,143 +881,179 @@ So, thanks to Power BI, it is clear to Wide World Importers how to improve their
 Now, let us see how on an ongoing basis if there are business needs to run adhoc time-critical queries, it can be achieved via custom queries. We will discuss that in more detail in the next task.  
 ------------- 
 
-#### Task 3.3: Explore SQL Analytics with Synapse. <a name="sql-analytics-with-synapse"></a>
+#### Task 3.3 (Optional): Explore SQL Analytics with Azure Synapse <a name="sql-analytics-with-synapse"></a>
 
-Data Engineers are often called upon to support with adhoc and possibly time-critical queries aside from the canned reports we have discussed so far.
-So, let us see how Azure SQL Analytics can also perform custom SQL and BI workload on the data lake in addition to supporting the reports discussed thus far. In this exercise, we will query the data from Data Lake using Azure Synapse Analytics.
+Data engineers are often required to support ad hoc and time-critical queries in addition to regular, scheduled reports.
 
-Synapse serverless SQL pools is a service to query data in data lakes. Key is that data can be accessed without the need to copy data into SQL tables. Typically, serverless pools are not used to serve external APIs.
-Here are the steps involved...
-
-**Steps:**
+In this task, you will learn how to perform custom SQL and business intelligence workloads on the data lake. You will query the data lake by using Azure Synapse Analytics. Specifically, you will rely upon Azure Synapse serverless SQL pools, which is a service that queries data in a data lake. It’s important to understand that the data can be queried without the need to move it into tables.
 
 
-1. **Search** “Synapse Analytics”.
 
-2. **Click** on Azure Synapse Analytics.
+1. In the Azure portal web session (tab), in the search box (located across the top of the page), enter: **Synapse Analytics**
 
-![abcdefgh](media/images/image3302.png)
+2. In the search results pane, select **Azure Synapse Analytics**.
 
-3. **Click** on Synapse workspace shared with you.
+![Select Azure Synapse Analytics](media/images/image3302.png)
 
->**Note**: You might see Synapse workspace name with different suffix in your Azure Portal.
+3.	In the filtered results, select the Azure Synapse resource.
 
-![abcdefgh](media/images/image3303.png)
+![Select Azure Synapse resource](media/images/image3303.png)
 
-4. **Click** on **Open** Synapse Studio.
+*Note: You might see Synapse workspace resource name with a different suffix in your Azure Portal.*
 
-![abcdefgh](media/images/image3304.png)
-
-Welcome to **Azure Synapse Analytics!**
-
-In Azure Synapse, we can use T-SQL to directly query data within a data lake for rapid data exploration.
-
-To enable easy exploration and transformation of data in our data lake we can use a serverless SQL pool.
-
-5. **Click** on Develop hub.
-
-6. **Expand** SQL scripts section.
-
-7. **Select** SQL scripts ‘1 Query Campaign And Twitter Data Using TSQL’.
-
-![abcdefgh](media/images/image3307.png)
-
-We can directly query external files stored in Azure storage without copying or loading data into a specialized store, all using familiar T-SQL dialect.
-
-A default, built-in, endpoint for this service is provided within every Synapse workspace.
-
-8. **Select** TSQL script.
-
-9. **Connect** with Serverless pool 'IgniteServerlessPool'.
-
-10. **Click** on Run.
-
-11. **View** the result.
-
-![abcdefgh](media/images/image3311.png)
-
-Let’s create a view over Campaign file in Serverless pool. With the relevant metadata and placed in an Azure storage account.
-
-12. **Select** TSQL script for creating a view.
-
-13. **Click** on Run.
-
-![abcdefgh](media/images/image3313.png)
-
-There you go. This is how easily data engineers can run adhoc time-critical queries on Synapse. We can do the same even with Databricks. Let us take a look...
-
-#### Task 3.4: Explore SQL Analytics with Azure Databricks. <a name="explore-sql-analytics-with-azure-databricks"></a>
+4. In the **Open Synapse Studio** tile, select the **Open** link.
 
 
-Azure Databricks provides an environment that allows you to run quick ad-hoc SQL queries on your data lake. Queries support multiple visualization types to explore query results from different perspectives.
+![Open Synapse studio](media/images/image3304.png)
 
-In this task, we as data engineers are exploring a few of the SQL Analytics features with Azure Databricks.
+*Synapse Studio opens in a new web session (tab).*
 
-Here are the steps...
+5. In Synapse Studio, at the left, select the **Develop** hub icon (the third from the top).
 
-**Steps:**
+*In Synapse Studio, you can use T-SQL to directly query data in a data lake by using a serverless SQL pool. That way, you can achieve rapid data exploration.*
 
-1. **Search** “Azure Databricks”.
+6. In the **Develop** pane, expand **SQL scripts**.
 
-2. **Click** on Azure Databricks.
+7. Select the **1 Query Campaign And Twitter Data Using TSQL Language** script.
 
-![abcdefgh](media/images/image3402.png)
+![Query Campaign And Twitter Data Using TSQL Language](media/images/image3307.png)
 
-3. **Click** on Azure Databricks service shared with you.
+*You can directly query external files stored in ADLS Gen2 storage without first copying or loading the data into a specialized store. You can query the data by using familiar T-SQL syntax.*
 
-![abcdefgh](media/images/image3403.png)
+8. In the **Connect to** dropdown list, ensure that **Built-in** is selected. 
 
-4. **Click on** Launch Workspace.
+*You will use the built-in endpoint for this service that’s provided within every Azure Synapse workspace. It’s a Synapse serverless SQL pool.*
 
-![abcdefgh](media/images/image3404.png)
+9.	In the **Use database** dropdown list, ensure that **IgniteServerlessPool** is selected.
+
+10.	To query the first 100 campaigns, in the script file, select lines 5-12.
+
+11.	Select **Run**.
+
+![Select Run](media/images/image3311.png)
+
+12.	Review the query result in the lower pane.
+
+We can directly query external files stored in Azure storage without copying or loading data into a specialized store, all using familiar T-SQL dialect. This is a quick and easy way to read the content of the files without pre-configuration.
+A default, built-in, endpoint for this service is provided with in Synapse workspace.
+
+*You will now create a view of the campaign file.*
+
+13. To create a view that queries the first 100 campaigns, in the script file, select lines 35-44.
+
+14.	Select **Run**.
+
+![Select Run](media/images/image3314.png)
+
+Let’s create a view over Campaign file in Serverless pool. 
+
+With the relevant metadata placed in an Azure storage account, views will allow us to reuse those queries in other places as well such as Power BI, in conjunction with serverless SQL pool.
+
+*Executing ad hoc queries and creating views over data in the data lake by using a Synapse serverless SQL pool is straightforward*.
+
+There you go. This is how easily data engineers can run adhoc time-critical queries on Synapse. We can do the same even with Databricks. Let us take a look.
+
+----  
 
 
-5. Go to “04_SQL_Analytics_On_Delta_Live_Tables” Notebook in Databricks workspace.
+#### Task 3.4 (Optional): Explore SQL Analytics with Azure Databricks. <a name="explore-sql-analytics-with-azure-databricks"></a>
 
-![abcdefgh](media/images/image3.4.png)
 
-6. Review Raw Twitter Data - Bronze
-Our bronze layer stores the raw, unprocessed data from our Twitter API pulls. By leaving it in its raw state, we give ourselves the option to reprocess it for different purposes in the future. Thanks to Azure Data Lake Gen 2, we can maintain this data for as long as we need it at very low costs. The bronze layer is usually the domain of data engineers who then build pipelines to refine this data forward into the silver layer.
+Azure Databricks provides an environment that allows you to run quick ad hoc SQL queries on your data lake. Queries support multiple visualization types that help you to explore query results from different perspectives.
 
-![abcdefgh](media/images/imageRawData.png)
+In this task, you will explore some SQL analytics features of Azure Databricks, including export and import, and running a workbook.
 
-7. Scroll down to cmd 7.
+1. In the Azure portal web session (tab), in the search box (located across the top of the page), enter: **Azure Databricks**
 
-**Curated Twitter Data - Silver**
+2. In the search results pane, select Azure Databricks.
 
-In our silver layer, we've curated our raw Twitter data into something more usable for data scientists. They can take these cleaned up, detailed level tables and develop features for machine learning models as well as aggregated analytical datasets for data analysts.
+![Select Azure Databricks](media/images/image3402.png)
 
-8. Scroll down to cmd 9.
+3. In the **Azure Databricks** page, select the resource that has a name starting with **databricks**.
+
+*Note: Each student has their own unique instance of this resource. Each Azure Databricks workspace is provisioned with a full-featured development environment.*
+
+![Select Azure Databricks resource](media/images/image3403.png)
+
+4. In the Azure Databricks resource page, select Launch Workspace.
+
+![Select Azure Databricks resource](media/images/image2104.png)
+
+*A new web session (tab) opens.*
+
+*You will now export a Databricks notebook in HTML format to your local machine.*
+
+5. In the Databricks web session (tab), at the left, select the Workspace icon (second from the top).
+
+
+6. Select **04_SQL_Analytics_On_Delta_Live_Tables** notebook in Databricks workspace.
+
+![Go to 04_SQL_Analytics_On_Delta_Live_Tables](media/images/image3405.png)
+
+7. Review cmd 4 cell.
+
+**Raw Twitter Data - Bronze**
+
+*The bronze layer stores the raw, unprocessed data from Twitter API pulls. By leaving it in its raw state, there's an option to reprocess it for different purposes in the future. Thanks to Azure Data Lake Gen2, it is possible to maintain this data for as long as possible at a very low costs.*
+*The bronze layer is usually the domain of data engineers who build pipelines to refine this data forward into the Silver layer.*
+
+![Raw Twitter data](media/images/image3406.png)
+
+8. Review cmd 7 cell.
+
+**Filtered Twitter Data - Silver**
+
+*In the Silver layer, the raw Twitter data is curated into something more usable for data scientists.*
+*They can take these cleaned up data and develop features for machine learning models as well as aggregated analytical datasets for data analysts*.
+
+![Filtered Twitter data](media/images/image3407.png)
+
+9. Review cmd 9 cell.
 
 **Curated Twitter Data - Gold**
 
-In our gold layer, we can enhance and refine our silver data sets even further into fit-for-purpose tables and views for specific analytical needs. Here we've augmented our Twitter data with a machine learning model identifying the sentiment (positive, neutral, or negative) of each Tweet so we can get a sense of how the Twitter tags we're analyzing are being used.
+*The Gold layer is to enhance and refine the silver layer data ets even further so that it is ready for fit-for-purpose tables and views for specific analytical needs.*
+*Here we've augmented the Twitter data with a machine learning model to identify the sentiment (positive, neutral, or negative) of each Tweet.*
 
+![Curated Twitter data](media/images/image3408.png)
 
-7. Scroll down to cmd 17.
+10. Review cmd 11 cell.
 
 **Aggregations Are A Great User Experience Enhancement**
 
-By pre-emptively aggregating our data that rarely or slowly changes, we can provide a great performance benefit for our end users. Our DLT pipeline performs this aggregation of hashtag counts by the geolocation of the Tweets. By only updating this each time we ingest more Tweets, we can keep the aggregation table up to date and then quickly consume and visualize it in tools like Power BI.One nice feature of Databricks notebooks is if a cell produces a DataFrame output (like the one below), you can also profile the data as well as generate quick visualizations. Throw in Markdown and comments and notebooks are a super convenient way to collaborate and communicate with your team, leadership, customers, and other stakeholders.
+*By pre-emptively aggregating the data that rarely or slowly changes, it provides a great performance benefit to the end users.*
+*The DLT pipeline performs this aggregation of hashtag counts by the geolocation of the Tweets.*
+*By updating this everytime more Tweets are ingested, it is possible to keep the aggregation table up-to-date and then quickly consume and visualize it in tools like Power BI.*One nice feature of Databricks notebooks is if a cell produces a DataFrame output (like the one below), you can also profile the data as well as generate quick visualizations. Throw in Markdown and comments and notebooks are a super convenient way to collaborate and communicate with your team, leadership, customers, and other stakeholders.
 
-8. Scroll down to cmd 20
+![Aggregations Are A Great User Experience Enhancement](media/images/image3410.png)
+
+
+11. Review cmd 20 cell.
 
 **Z-Order Optimization**
 
-Z-Ordering is a technique to colocate related information in the same set of files.This co-locality is automatically used by Delta Lake on Databricks data-skipping algorithms.This behavior dramatically reduces the amount of data that Delta Lake on Databricks needs to read
+*Z-Ordering is a technique to co-locate related information in the same set of files.*
+*This co-locality is automatically used by Delta Lake on Databricks data-skipping algorithms.*
+*This behavior dramatically reduces the amount of data that Delta Lake on Databricks needs to read.*
 
+![Z-Order Optimization](media/images/image3411.png)
 
-9. Scroll down to cmd 22.
+12. Review cmd 22 cell.
 
 **Caching**
 
-Caching reduces scanning of the original files in future queries. It basically caches contents of a table in Apache Spark cache. If a query is cached, then a temp view is created for this query.
+*Caching reduces scanning of the original files in future queries. It caches contents of a table in Apache Spark cache. If a query is cached, then a temperoray view is created for this query.*
 
-10.  Scroll down to cmd 24.
+![Caching](media/images/image3412.png)
+
+13.  Review cmd 24 cell.
 
 **Time Travel**
 
-In audit history above We can view the history of the different versions of the table and load and display any of those versions.In the exercise below we have displayed data in a specific version
+*In the audit history it is possible to see the history of the different versions of the table as well as load and display of any of those versions.*
+
+![Time Travel](media/images/image3413.png)
+
 ---
 
 ### Exercise 4: Tee up the Purview <a name="tee-up-the-purview"></a>
@@ -1081,8 +1135,8 @@ In this task, you will explore the Wide World Importers data estate that’s reg
 
 *Here you can see the data lineage of the Azure Synapse, which is a registered asset in Microsoft Purview.*
 >**Note:** This image is for informational purposes only.
-> You will not be able tp see this in your lab.
-> It will be explained to you by your lab instructor. 
+> You will not see this in your lab.
+> The lab instructor will guide you through the image in the lab session. 
 
 
 ![lineage of Azure Synapse](media/images/image4011.png)
