@@ -177,11 +177,18 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 27.	In the **Destination** tab, in **Cluster** dropdown list, select the Data Explorer pool.
 
+![selecting cluster](media/images/imageClusterSelect.png)
+
+
       >**Note:** If you do not see any Data Explorer Pool in **Cluster** dropdown, select **Add Cluster**.
 
       > ![Add Cluster](media/images/imageAddCluster.png)
-
-      > In the **Connection URI**, enter the URI copied in step 22.
+	  
+	  > Navigate to your Synapse tab, click on manage tab, click on data explorer pools, click on the igniteKustopool, copy the ingestion url.
+	  
+	  > ![manage tab](media/images/manageTab.png)
+      
+	  > Go back to the data explorer tab, in the **Connection URI**, enter the URI copied above.
 
       > Select **Add**.
 
@@ -811,7 +818,7 @@ In this task, you will work with Power BI to reveal valuable insights for Wide W
 
 ![Select upload](media/images/image3209.png)
 
-10.	In the **Open** window, navigate to the **C:\labfiles\Ignite Demo\Packaging\artifacts\reports** folder, and then select the **IgniteDemoReport.pbix** file.
+10.	In the **Open** window, navigate to the **C:\labfiles\Packaging\artifacts\reports** folder, and then select the **IgniteDemoReport.pbix** file.
 
 11.	Select **Open**.
 
