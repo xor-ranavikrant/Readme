@@ -494,10 +494,10 @@ We would also like to understand out customer's sentiment better, so as to creat
 
 For a data science team charged with creating this model, they will usually undergo a set of key tasks: 
 
-- exploring data to understand the features available, any interesting patterns that can be found, and its potential for training such a model
-- running tools such as a hyperparameter sweep to identify the best performing algorithm for the model
-- validating the model against a holdout dataset, and registering the model if its performance is sustained over the unseen data
-- deploying the model to production to be used against real-world data - in this case, our full customer base to identify churn candidates and take preventive actions
+- Exploring data to understand any interesting patterns that can be found, and its potential for training such a model
+- Running tools such as a hyperparameter sweep to identify the best performing algorithm for the model
+- Validating the model against a holdout dataset, and registering the model.
+- Deploying the model to production to identify churn candidates and take preventive actions
   
 
 ![abcdefgh](media/images/image3100.png)
@@ -521,9 +521,9 @@ Let's start by examining the customer churn data.
 
 ![abcdefgh](media/images/image3111.png)
 
-With the prepared data, they examined the customer churn effect as related to the tenure of the month and the total amount spent by them. Here we can see, a low churn rate in cases where customer tenure is high and where they spend more with Wide World Importers. 
+With the prepared data, we observe that customer churn effect is related to the tenure and the total amount spent by customers. Here we can see, a low churn rate in cases where customer tenure is high and where they spend more with Wide World Importers. 
 
-We will use the popular xgboost library to train a more accurate model. One way to improve a model’s perfomance is to test different hyperparameters. Rather than doing this through trial and error, Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time, using Hyperopt and SparkTrials. As before, the code tracks the performance of each parameter configuration with MLflow.
+We will use the popular xgboost library to train a more accurate model. Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time. The code tracks the performance of each parameter configuration with MLflow.
   
 
 4. **Point** to cmd 29.
@@ -604,7 +604,7 @@ We will now be looking at the scenario where we are forecasting sales using a Re
 
 ![abcdefgh](media/images/image3136.png)
 
-Here the model gets deployed to Azure ML Endpoint. It can be consumed further for predicting the sale.
+Here the model gets deployed to Azure ML Endpoint. It can be consumed further for predicting the sales.
 
 12. **Point** to cmd 133 to see sales forecast using store data after campaign 
 
