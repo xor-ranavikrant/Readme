@@ -490,7 +490,7 @@ Congratulations! As data engineers, you have now set up a solid foundation of fu
 Architecture diagram shows the end-to-end MLOps pipeline using the Azure Databricks managed MLflow. 
 Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a given customer will churn.
 
-We also like to understand out customer sentiment better so as to create targated campaign and improve our sale. 
+We would also like to understand out customer sentiment better so as to create targated campaign and improve our sale. 
 
 For a data science team charged with creating this model, they will usually undergo a set of key tasks: 
 
