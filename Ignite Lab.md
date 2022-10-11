@@ -31,8 +31,7 @@ This lab will demonstrate the capability of Lakehouse to serve as a single platf
 You will work through an example of a real world implementation for the fictitious Wide World Importers Enterprise.
 
 
-
-Wide World Importers is a brick and mortar retailer that has hundreds of stores worldwide and a fast-growing online store. It sells a wide variety of consumer merchandise, including sunglasses, sports shoes, watches, wallets, books, and various beach products.
+Wide World Importers is a brick-and-mortar retailer that has hundreds of stores worldwide and a fast-growing online store. It sells a wide variety of consumer merchandise, including sunglasses, sports shoes, watches, wallets, books, and various beach products.
 
 The lab scenario starts on May 30th, 2021. The company's new CEO, April, recently noticed negative trends in their KPIs, including:
 
@@ -51,6 +50,9 @@ In this Exercise you will act as a Data Engineer. Rupesh would like you to impro
 - Enable quick turnaround time (Velocity).
 - Support open standards data format (Variety).
 
+Here is the visual representation of the exercise that we are going to perform in this lab.
+
+![Lab exercises](media/images/imageLabExercises.png)
  
 ---
  
@@ -84,18 +86,19 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 ![Azure zredentials for the lab session](media/images/imageAzureCredentials.png)
 
 
-5.	If prompted to stay signed in, select **Yes**.
+5. If prompted to stay signed in, select **Yes**.
 
 
-  ![On sign in, select Yes or No](media/images/image1104.png)
+![On sign in, select Yes or No](media/images/image1104.png)
 
 
-6.	If prompted to take a tour, select **Maybe Later**.
-
- ![If prompted to take a tour, select Maybe Later](media/images/image1105.png)
+6. If prompted to take a tour, select **Maybe Later**.
 
 
- 7. In the search results pane, select **Resource groups**.
+![If prompted to take a tour, select Maybe Later](media/images/image1105.png)
+
+
+7. In the search results pane, select **Resource groups**.
 
 ![In the search results pane, select the Resource group](media/images/image1107.png)
 
@@ -159,16 +162,17 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 *By using ADX’s powerful Kusto Query Language (KQL), you can ensure that the thresholds you have set for each device in the store is being met.*
 
+
 >**Note:** Other Azure services use KQL for analytical queries. These services include Azure Monitor logs, Application Insights, and Microsoft Defender for Endpoint.
 
 
 22.	In Azure Data Explorer Studio, in the left pane, select the **Data** hub icon.
 
-26.	In the **Data Management** page, select the **Ingest data** action.
+23.	In the **Data Management** page, select the **Ingest data** action.
 
 ![Paste the URI into the address bar](media/images/image1127.png)
 
-23.	In the **Destination** tab, in **Cluster** dropdown list, select the Data Explorer pool.
+24.	In the **Destination** tab, in **Cluster** dropdown list, select the Data Explorer pool.
 
 >**Note:** If you do not see any Data Explorer Pool in **Cluster** dropdown, select **Add Cluster**.
 
@@ -192,75 +196,75 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 > ![click Add](media/images/imageClickAdd.png)
      
-24.	In the **Table** box, enter **Thermostat**.
+25.	In the **Table** box, enter **Thermostat**.
 
-25.	Select **Next: Source.**
+26.	Select **Next: Source.**
 
 ![Click Next](media/images/image1131.png)
 
-26.	In the **Source** tab, in the **Source** dropdown list, select **Event Hub**.
+27.	In the **Source** tab, in the **Source** dropdown list, select **Event Hub**.
 
-27.	In **Subscription** dropdown list, select your subscription.
+28.	In **Subscription** dropdown list, select your subscription.
 
 ![Select Eventhub](media/images/imageSelectEventhub.png)
 
-28.	In the **Event Hub namespace** dropdown list, select Event Hub that has a name starting with **adx-thermostat-occupancy-**.
+29.	In the **Event Hub namespace** dropdown list, select Event Hub that has a name starting with **adx-thermostat-occupancy-**.
 
-29.	In the **Event Hub** dropdown list, select **thermostat**.
+30.	In the **Event Hub** dropdown list, select **thermostat**.
 
-30.	In **Data connection name** dropdown list, select **IgniteDB-thermostat**.
+31.	In **Data connection name** dropdown list, select **IgniteDB-thermostat**.
 
-31.	In the **Consumer group** dropdown list, select **$Default**.
+32.	In the **Consumer group** dropdown list, select **$Default**.
 
-32.	In **Compression** dropdown list, select **None**.
+33.	In **Compression** dropdown list, select **None**.
 
-33.	Select **Next: Schema**.
+34.	Select **Next: Schema**.
 
 ![Click Next](media/images/image1139.png)
 
-34.	In the **Schema** tab, wait until the data preview loads (about 20 seconds).
+35.	In the **Schema** tab, wait until the data preview loads (about 20 seconds).
 
-35.	Review the event data, which comprises thermostat measures from different devices.
+36.	Review the event data, which comprises thermostat measures from different devices.
 
-36.	In the **Data** format dropdown list, select **JSON.**
+37.	In the **Data** format dropdown list, select **JSON.**
 
-37.	Select **Next: Start ingestion.**
+38.	Select **Next: Start ingestion.**
 
 ![Click Next](media/images/image1143.png)
 
-38.	Confirm that the continuous ingestion from Event Hub has been established, and then select **Close** (located at the bottom of the page).
+39.	Confirm that the continuous ingestion from Event Hub has been established, and then select **Close** (located at the bottom of the page).
 
 ![Select Close](media/images/image1144.png)
 
-39. Return to the Synapse Studio web session (tab).
+40. Return to the Synapse Studio web session (tab).
 
-40. In Synapse Studio, at the left, select the **Develop** hub icon (the third from the top).
+41. In Synapse Studio, at the left, select the **Develop** hub icon (the third from the top).
 
-41. In the **Develop** pane, expand **KQL scripts**.
+42. In the **Develop** pane, expand **KQL scripts**.
 
-42. Select the **ThermostatOccupancyScript** script.
+43. Select the **ThermostatOccupancyScript** script.
 
 ![Select the ThermostatOccupancyScript Sript](media/images/image1148.png)
 
-43. In the **Connect to** dropdown list, select the data explorer pool.
+44. In the **Connect to** dropdown list, select the data explorer pool.
 
 >**Note:** If required, collapse the panes on the left using the << icon at the top right of each pane.
 
-44. In the **Use database** dropdown list, select **IgniteDB**.
+45. In the **Use database** dropdown list, select **IgniteDB**.
 
-45.	Select the query (lines 4-8) that is commented as **What is the average temp every minute?**.
+46.	Select the query (lines 4-8) that is commented as **What is the average temp every minute?**.
 
 *The query retrieves the average temperature per minute for a thermostat device (TH005) for the Miami store.*
 
-46.	Select **Run**. 
+47.	Select **Run**. 
 
-47.	In the **Results** pane (located along the bottom), review the query result expressed as a chart.
+48.	In the **Results** pane (located along the bottom), review the query result expressed as a chart.
 
 ![Review the query result ](media/images/image1152.png)
 
-*Your graph me appear slightly different than the one shown above. It may take up to 60 seconds to load.*
+*Your graph may appear slightly different than the one shown above. It may take up to 60 seconds to load.*
 
-48.	Notice that the temperature in the Miami store is oscillating between 65 and 70 degrees Fahrenheit. Also notice that as soon as any unanticipated spike occurs in the store temperature, it is automatically cooled down using ADX.
+49.	Notice that the temperature in the Miami store is oscillating between 65 and 70 degrees Fahrenheit. Also notice, that as soon as any unanticipated spike occurs in the store temperature, it is automatically cooled down using ADX.
 
 ---
 
@@ -275,7 +279,7 @@ In this task you will ingest campaigns data from Snowflake and customer churn da
 
 1. Return to the Synapse Studio web session (tab).
 
-2. In Synapse Studio, at the left, select the **Integrate** hub icon (the forth from the top).
+2. In Synapse Studio, at the left, select the **Integrate** hub icon (the fourth from the top).
 
 3. In the **Integrate** pane, expand **Pipelines**.
 
@@ -309,7 +313,7 @@ In this task you will ingest campaigns data from Snowflake and customer churn da
 
 ![Sink Dataset](media/images/image1212.png)
 
-*Similarly, the next pipeline is designed to ingest customer churn data from Teradata to the data lake.*
+*Similarly, the next pipeline is designed to ingest customer churn data from Teradata and Twitter data to the data lake.*
 
 >**Note:** The image is for informational purposes only. Due to time constraints, we will not explore it in the lab.
 
@@ -399,6 +403,7 @@ In this task, you will set up the Azure Databricks environment.
 
 *In exercise 1, we extracted data from a spectrum of data sources and landed it into ADLS Gen 2 data lake. To access this data from ADLS Gen2 data lake, we need to mount it on Azure Databricks filesystem. Executing this script will mount ADLS Gen2 to Azure Databricks.*
 
+---
 
 #### Task 2.2: Review sentiment analysis model training. <a name="sentiment-model"></a>
 
@@ -418,6 +423,7 @@ In this task, you will explore the sentiment analysis model training notebook. T
 
 *Running this script will generate a ML model ID. This Model ID is used by the Delta Live Pipeline that we will create in the next task to perform ML operations on Twitter data.* 
 
+---
 
 
 #### Task 2.3: Create a Delta Live Table pipeline. <a name="dlt-pipeline"></a>
@@ -459,7 +465,7 @@ In this task, you will create a Delta Live Table pipeline.
 - Retail Sales Data Prep Using Spark DLT
 
       
-7.	In the **Storage location** box, enter: **/mnt/delta-files/dlt/**
+7.	In the **Storage location** box, enter: **/mnt/delta-files/lakedb/**
 
 8.	In the **Target** box, enter: **lakedb**
 
@@ -500,30 +506,23 @@ This information can be then piped into Microsoft Purview as a part of an overal
 
 
 
-
 Congratulations! As a data engineer, you have now set up a solid foundation of fully stitched data comprised of campaigns data and Twitter data from disparate sources including some key data transformations.
 
 ----
 
 ### Exercise 3: Explore Machine Learning and Business Intelligence scenarios on the Lakehouse. <a name="data-science-and-analytics-on-the-Lakehouse"></a>
 
-
-#### Task 3.1: Review MLOps pipeline using the Azure Databricks managed MLflow. <a name="ml-model-using-ml-flow"></a>
-
-The following architecture diagram shows the end-to-end MLOps pipeline that uses managed MLflow on Azure Databricks. After multiple iterations with various hyperparameters, the best performing model in Databricks MLflow model was registered and set up in Azure Databricks Workspace and Azure ML Workspace to support low-latency requests.
+#### Task 3.1: Review MLOps pipeline using the Azure Databricks managed MLflow and Operationalized as an ML service in Azure ML<a name="ml-model-using-ml-flow"></a>
 
 Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a particular customer will churn.
 
-We would also like to understand our customer's sentiment, so as to create targeted campaigns to improve our sales. 
+We would also like to understand our customer's sentiment, so as to create targeted campaigns to improve our sales.
 
+*Architecture Diagram*
 
-![Review MLOps pipeline using the Azure Databricks managed MLflow](media/images/image3100.png)
- 
+![Architecture Diagram](media/images/image3100.png)
 
-
-*In Azure Databricks, everything starts with setting up a workspace. You can access all your Databricks assets by using the sidebar. The content in the sidebar depends on the selected persona, e.g. it’s Data Science & Engineering, Machine Learning, or SQL.*
-  
-1.	In the Databricks web session (tab), which you opened in Exercise 2, in the left pane, in the top dropdown list, select the **Machine Learning** persona.
+1. In the Databricks web session (tab), which you opened in Exercise 2, in the left pane, in the top dropdown list, select the **Machine Learning** persona.
 
 *By default, the left pane appears in a collapsed state and only the icons are visible. You can hover your cursor over the pane to expand it to the full view.*
 
@@ -531,92 +530,66 @@ We would also like to understand our customer's sentiment, so as to create targe
 
 2. In the left pane, select the **Workspaces** icon (first icon), and then select the ML Solutions in OneBox workspace.
 
-    ![Select the workspaces](media/images/image3102.png)
+![Select the workspaces](media/images/image3102.png)
 
+In this task, you won’t run any cells. Instead, you will explore select cells and review their outcomes.
+The below scatter-plot chart, you can see the corelation between:
 
-*In this task, you won’t run any cells. Instead, you will explore select cells and review their outcomes.*
-*You will start by examining the customer churn effect on the tenure of the month and the total amount spent. As a result, you will see the low churn rate when customer tenure is high, and they spend higher amounts.*
+- customer churn rate,
+- amount spent by the customer and
+- number of months of patronage of the customer.
+
+  As a result, you will find that the customers who spend large amount and customer who are patrons for many months have the lowest churn rate.
 
 3. Review the **cmd 11** cell, and then review the output for **Exploratory Data Analysis**.
-  
-    ![cmd 11](media/images/image3103.png)
 
-*In the chart above, we observe that customer churn effect is related to the tenure and the total amount spent by customers. Here we can see, when the customer tenure is low and their spend is less, they are more likely to churn.*
+   ![cmd 11](media/images/image3103.png)
 
+4. Review the **cmd 29** cell.
 
+Using the Customer churn data, we create multiple Customer churn ML models.
 
-  
+![Runs using a parallel coordinates](media/images/image3115.png)
 
-4.  Review the **cmd 29** cell.
-
-*Here we will use the popular xgboost library to train a more accurate model. Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time. The code tracks the performance of each parameter configuration with MLflow.*
-  
-
-    ![Runs using a parallel coordinates](media/images/image3115.png)
-  
-
-*You can see the different runs using a parallel coordinates plot, which shows the impact of different parameter values on a metric.*
-*This is a comparison among different model runs and we select the most optimal model run for our prediction.* 
-
-  
+The best among these multiple ML Customer churn models is selected and registered with Azure model registry.
 
 **Operationalized as an ML service using MLOps in Azure ML/AI**.
 
-
 5. Review the **cmd 44** cell to load Azure ML Workspace.
-  
 
-    ![Load Azure ML workspace](media/images/image3119.png)
+![Load Azure ML workspace](media/images/image3119.png)
 
+The MLflow plugin azureml-mlflow is used to deploy the Customer churn ML model to Azure ML. The deployed ML model will be used to predict Customer churn.
 
-The MLflow plugin azureml-mlflow can deploy models to Azure ML, either to Azure Kubernetes Service (AKS), Azure Container Instances (ACI) or Managed Endpoints for real-time serving. 
+**Twitter Sentiment Score Custom ML Model**
 
-
-
-**Twitter Sentiment Score Custom ML Model** 
-
-*This model helps Wide World Importers analyze the sentiment of their customers based on what's trending on social media like Twitter. They use these sentiment scores to curate attractive campaigns to appeal to their targeted audience.* 
+*This model helps Wide World Importers analyze the sentiment of their customers based on what's trending on social media like Twitter. The popular social media sentiments can be used to create attractive campaigns for a targeted audience.*
 
 6. In the left, select the small arrow to expand the sidebar, collapse the **Customer Churn Model** and select **Twitter Sentiment Score Model**.
 
-
-    ![Twitter sentiment score model](media/images/image3123.png)
-
+   ![Twitter sentiment score model](media/images/image3123.png)
 
 7. Review the **cmd 75** cell for customer model train and validation.
 
+   ![Customer model train and validation](media/images/image3126.png)
 
-    ![Customer model train and validation](media/images/image3126.png)
+*Here the Twitter sentiment model is trained for further consumption.*
 
-*Here the sentiment model is trained for further consumption.*
-
-
-
-**Campaign Analytics**  
-
+**Campaign Analytics**
 
 8. From the sidebar, select **Campaign Analytics**.
 
-
-    ![Campaign Analytics](media/images/image3128.png)
-
-
-
+   ![Campaign Analytics](media/images/image3128.png)
 
 9. Review the **cmd 88** cell.
 
-*Using the sentiment model we trained in cmd 75 cell, Wide World Importers decided to run various campaigns to reduce their churn and increase their revenue.*
+*Using the Twitter sentiment model we trained in cmd 75 cell, Wide World Importers decided to run various campaigns to reduce their customer churn and to increase their revenue.*
 
+![cmd 88](media/images/image3129.png)
 
-    ![cmd 88](media/images/image3129.png)
-
-
-
-**Sales Forecasting** 
-
+**Sales Forecasting**
 
 10. From the sidebar, select **Sales Forecasting**.
-
 
     ![Sales Forecasting](media/images/image3132.png)
 
@@ -624,33 +597,29 @@ To validate their approach to reduce churn and improve sales, Wide World Importe
 
 *You will now look at the scenario where you are forecasting sales using a Regression model and deploying it to Azure ML as a service using a model registered in Azure Databricks.*
 
-
 11. Review the **cmd 127** cell where model deployment is created.
-
 
     ![Model Deployement](media/images/image3136.png)
 
-*The model gets deployed to Azure ML endpoint. It can be consumed further for predicting the sales for Wide World Importers*.
+*The model gets deployed to Azure ML endpoint. It can be consumed further for predicting the sales for Wide World Importers.*
 
-12. Review the **cmd 133** cell to see sales forecast using store data after the campaigns. 
-
+12. Review the **cmd 133** cell to see sales forecast using store data after the campaigns.
 
     ![Store data after the campaigns ](media/images/image3138.png)
 
-*All this analysis using MLOps enabled Wide World Importers to predict positive sales forecast and a successful year ahead*. 
+*All this analysis using MLOps enabled Wide World Importers to predict positive sales forecast and a successful year ahead*.
 
-----------
+---
 
 #### Task 3.2: Leverage Power BI to derive actionable insights from data in the Lakehouse. <a name="power-bi-report-to-analyse-data-in-the-Lakehouse"></a>
 
- For the purposes of this task, the date is November 1. Wide World Importers now needs to prepare for a resounding success with unprecedented sales in the upcoming Cyber Monday Sales event. The good news is that enriched datasets sourced from disparate data sources and the best performing model outputs have now been placed in the lakehouse ready for consumption by Power BI.
+For the purposes of this task, the date is November 1. Wide World Importers now needs to prepare for a successful Cyber Monday Sale event. The good news is that the enriched datasets sourced from disparate data sources and the best performing model outputs have now been placed in the Lakehouse ready for consumption by Power BI.
 
-In this task, you will work with Power BI to reveal valuable insights for Wide World Importers.
+In this task, you will work with Power BI to reveal some valuable insights.
 
 1.	Open a new web session (tab), and then navigate to: **https://powerbi.com**
 
 2.  If prompted, enter the email account provided to you, and then select **Submit**.
-
 
 ![Register on Power BI](media/images/image3202.png)
 
@@ -692,201 +661,106 @@ In this task, you will work with Power BI to reveal valuable insights for Wide W
 
 11.	Notice that a Power BI report and dataset have been added to your workspace.
 
-![Power BI report added to your workspace.](media/images/image3212.png)
-
 12.	To open the report, select the **IgniteDemoReport** report.
 
+![Power BI report added to your workspace.](media/images/image3212.png)
 
-![Open the Ignite Report](media/images/image3228.png)
 
-13. The report has 3 sections,
- - Customer Churn Report
+13. This report has three sections:
+ - Churn Analysis
  - Campaign Analytics
  - Website Analytics
  
+
 ![PowerBI Report Name](media/images/image3227.png)
 
-1.  Lets navigate to **Churn Analysis Tab,** we analyze the Customer Churn for World Wide importers customers. Here we can see  the probabilty of customer churn is based on two factors. Namely, the tenure of the customers and their purchase amount.
+14.  Lets navigate to **Churn Analysis Tab,** where we analyze the Customer Churn. This report and other two reports in Power BI are coming from the data Lakehouse that we created in earlier exercises.
 
-  
 
 ![PowerBI Report Buttons](media/images/image3228.png)
 
-2.The top left Scatter Chart shows the Customers, the black color in the legend represents the Customers who are more likely to Churn, and the blue color shows Customers who are less likely to churn.
 
-3.Here we can we can see on the scatter plot chart that most of their loyal customers are those who have been shopping with them for a longer period of time and who also spend larger amounts. On the other hand, we see that most of the customers who are likely to churn are those with lesser tenure (or shopping history) and also lower purchase amount.  
-With this insight, it is clear to Wide World Importers, that in order to have a successful CyberMonday Sale event, they need to attract newer customers who spend lesser. They also need to know more about where the most customer churn is happening and leverage the lessons learned from their campaigns to target this population of customers. Let's see first where the churn is happening.    
+15. The top left Scatter Chart shows the customers. The black color in the legend represents the customers who are more likely to churn, and the blue color shows the customers who are less likely to churn.
+You can notice that the churn rate is low when the customer tenure is high as well as they spend higher amounts.
 
-![abcdef](media/images/image3229.png)
-
-
-4.**Point** towards the bottom right Bar Chart.
-
-The bar chart explains the probability of customer churn depending on various conditions. We see a few more factors now affecting customer churn. Namely, the online delivery channel and customers who had to interact with customer support. So, that answers where the churn is happening. It seems the highest churn is in their online channel! They need to fix that quickly before the CyberMonday event! To do that, they need to launch new campaigns based on lessons learned from the prior failed campaigns on Sep 5th. Let's see what those prior campaigns revealed...
- 
-![abcdef](media/images/image3234.png)
-
-  
-  
-
-5.  **Point** towards the word cloud, to show the hashtag size based on the revenue generated through the campaign. It is obvious that the largest revenue generated can be attributed to #GoGreen and #SustainableFashion. But let us re-confirm that based on the number of tweets for those hashtags...
+16. With this insight, Wide World Importers decides to target customers with lesser tenure and lesser spend amounts through their new campaigns.
 
 
-
-![abcdef](media/images/image3235.png)
-
-6.  **Point** towards the Bar chart, to show the number of tweets by hashtags.
-
-Here on this  bar chart most popular hastags with most tweets on twitter are ‘**GoGreen’** and **'sustainable fashion’**. So that confirms our insight from this data is that most of the customers are environmentally conscious and want to purchase climate friendly green products which are sustainable as well.
-  
-So, armed with all this information, Wide World Importers launches new campaigns to attract customers who have lesser tenure, spend lesser and who prefer the online channel and are also environmentally conscious. The outcome? Let us see next!
+![Scatter chart](media/images/image3229.png)
 
 
-
-  
-
-![abcdef](media/images/image3236.png)
-
-  Here we see our new campaigns data and get even more insights 
-
-1.  **Click** on the Campaign Analytics tab from the top right pane to navigate to the Campaign Analytics report.
-  
-
-![abcdef](media/images/image3238.png)
-
-Here on this Campaigns report, from the Bar chart we can obviously see our most popular campaings launched are ‘gogreen’ and  ‘sustainablefashion’. No surprise that these also have the highest revenue among all other campaigns we launced
-These new campaigns were run by Wide World Importers globally. So, let us take a moment to see how these campaigns fared in different countries.
+Now, let's go the Campaign Analytics. 
 
 
-  
+17.  Select the **Campaign Analytics** tab from the top right pane to navigate to the Campaign Analytics report.
 
-![abcdef](media/images/image3239.png)
+![Select Campaigns Analytics](media/images/image3238.png)
 
-  
-
-2.  The Donut chart shows the revenue generated by the countries after running the new campaigns. Clearly these campaigns were a huge success in USA and Germany. The prospects for CyberMonday sale are now looking even better...
+18. In this Campaigns Analytics report, the Bar chart shows that the most popular campaigns launched are **gogreen** and **sustainablefashion**. 
 
 
-![donutchart](media/images/image3240.png)
-
-  
-
-3.  **Click** on the generations to see the branches change, and **click** on the campaign names to see the revenue.
-
-  
-
-Here we see another way to gather insights about their campaigns. It is by the use of a decomposition tree. This decomposition tree has different levels to show campaigns reaching different age groups through social media, events, and emails. As an illustration you can see here the revenue generated by country and campaign name. In this example, USA has generated the highest revenue when the campaign name was ‘Southbeach’ and they used social media for the outreach, and the generation was baby boomers.
-Now, let us turn our attention to website analytics since that is so key for success in the CyberMonday event...
-  
-
-![abcdef](media/images/image3241.png)
- 
-
-  
+![Campaigns report - Bar chart](media/images/image3239.png)
 
 
-**Click** on Website Analytics from the top right pane to navigate to the Website Analytics Report.
+19. Click on **Website Analytics** from the top right pane to navigate to the Website Analytics Report.
 
-Here we see an immediate issue for Wide World Importers.
+![Website Analytics](media/images/imageWebsiteAnalytics.png)
+
+Here we see an immediate problem for Wide World Importers.
+The bounce rate is high. Looks like a large population of their customers/visitors leave their website without much activity.
+
+As per this Donut chart it seems that the bounce rate is high because around 60 % of the online Customers are not happy. 
 
 ![Website Analysis Report page](media/images/image3242.png)
 
+Let us understand more about these **not happy** customers. What age group are they? What do they shop for and what devices they use to shop online? 
+
+20. Click on **Not Happy** on the Donut chart to filter the report page.
+
+![Not Happy Customers](media/images/imageDonutChart.png)
   
+The **site visitors by age group** chart shows that most of the "Not Happy" Customers are in the  age group of 21 to 40. So, it seems, millennials form the majority of unhappy online customers. Now, let us see what these millenials typically shop for online.
+ 
+![Site visitors by age group](media/images/imageAgeGroup.png) 
 
-1.Their Bounce rate is high. Looks like a large population of their customers/ visitors leave their website without much activity. They need to find out more about the root cause of this high bounce rate. So let us look at the next graph which shows the reason behind the high bounce rate...
+![Repeat customers](media/images/imageSurfingBoard.png)
 
+21.  We know that the millenials from the biggest customer segment are "Not Happy" when...
+
+- they could not find the product they searched for on the website.
+- Customers are also not happy when they were redirected to Wide World Importers website from a third party website.
+- Customers are also not happy when the website user experience on their mobile phones is not good.
+- they are not able find discounts on the website.
+
+![Repeat Customers Chart](media/images/imageRepeatCustomersGraph.png)
+
+Ultimately, we can say that we need to improve the user experience on the website for product search and make sure it renders correctly on the mobile phone.
   
+Now, lets navigate to the top customer segment for additional insights generated.
 
-![abcdef](media/images/image3242a.png)
+22. Click on the **Top Segments** to show the details.
 
+23. Click on the first bubble 1 see the details for Segment 1.
 
-
-Per this Donut chart it seems that the bounce rate is high because around 60 % of the online Customers are not happy. Let us understand more about these "not happy" customers. What age group are they? What do they shop for and what devices they use to shop online? 
-
-
-  
-
-![abcdef](media/images/image3242b.png)
-
-3.Click on "Not Happy" on the Donut chart to filter the report page.
-
-![WebsiteAnalyticsPage](media/PowerBI-Images/websiteAnalytics-page1.png)
-
-  
-
-1.  The site visitor by age group chart shows that most of the "Not Happy" Customers are in the  age group of 21 to 40. So, it seems Millennials form the majority of unhappy online customers...let us see what these millenials typically shop for online...
- 
- ![WebsiteAnalyticsPage](media/PowerBI-Images/websiteAnalytics-page2.png)
-
-2 . Here on this bar chart we can see which Products they are searching on the website. 
-
-![WebsiteAnalyticsPage](media/PowerBI-Images/websiteAnalytics-page3.png)
+94.5% customers are not happy.
 
 
-**Hover** over the bar chart to see Product Images.Here we can see most of the millennial customers are searching for beach products and adventure sports.
-
-Now lets move on to the next chart which shows some insights about the devices used by these millennials to shop online.
-
-1. On this column chart we can see that most of our "Not Happy" customers are browsing our website on a mobile phone.
-   
-![WebsiteAnalyticsPage](media/PowerBI-Images/websiteAnalytics-page4.png)
+![Top Segments](media/images/image3248.png)
 
 
-Now lets deep dive to get more insights about the factors which have the most occurence in groups of customers who are "Not Happy"
+94.5 % of the "not happy" customers experienced failed product searches. These are the millennials who are using their mobile devices for shopping.
 
- 1.  **Click** on the key Influencers button to navigate to the Key Influencers page.
-   
 
-![abcdef](media/images/image3246.png)
-
+![Millenials using mobile phone](media/images/imagePowerBI.png)
  
 
-Let's click on the dropdown and select "Not Happy" to see the factors.
+As a result of this analysis, Wide World Importers reduce their bounce rate by implementing a mobile-friendly website with fast product search, focussing on high demand product for the millenials.
+These changes not only improve the bounce rate dramatically, but they also reward Wide World Importers with an uprecedented sales at their Cyber Monday Sale event. 
 
- : Happy | : Not Happy
+Now, let us see how on an ongoing basis, if there are any business needs to run adhoc time-critical queries, it can be achieved via custom queries. 
 
-1. We can see that millennials form the biggest not happy customer segment.
-2. Customers are also not happy when they could not find the product they searched for on the website.
-3. Customers are also not happy when they were redirected to Wide World Importers website from a third party website.
-4. Customers are also not happy whent the website user experience on their mobile phones is not good.
-5. Most of the customers not happy because they are not able find discounts on the website.
+We will discuss that in more detail in the next task.
 
-Ultimately we can say that we need to improve the user experience on the Website for Product search and make sure it renders correctly on the Mobile phone.
-
-
-
-![abcdef](media/images/image3247.png)
-
-  
- Now, another interesting angle is to see even amongst the "Not Happy" set of customers, what top segments can they focus on. Lets navigate to Top Segments for additional insights generated.
-
- 1.  **Click** on the Top Segments to show the details.
-
-48. **Click** on bubble 1 to see the details for segment 1.
-
- 
- 
-
-The bubbles show the segment of the population who are not happy.
-![abcdef](media/images/image3248.png)
-
-
-48. **Click** on bubble 1 to see the details for segment 1.
-Segment 1 shows that 94.5 % of the "not happy" customers experienced failed product searches. By looking at customer segment category, these are  millennials who are using their mobile devices for shopping.
-
-![abcdef](media/images/image3249a.png)
- 
- 
- 
-  Now lets click on Decomposition button to  navigate to Decomposition Tree chart
-
-The decomposition tree which shows a similar scenario based on age group categories as to who are happy or unhappy based on various conditions.
-
-
-![abcdef](media/images/image3249b.png)
-
-So, thanks to Power BI, it is clear to Wide World Importers how to improve their bounce rate. They quickly implement a mobile-friendly website with super fast and convenient product search capabilities, focussing mainly on the products most in demand with millennials. These changes reduce their not happy online customers and thereby improve their bounce rate dramatically. As a result they have a resounding success with uprecedented sales at their CyberMonday Sale event. 
-Now, let us see how on an ongoing basis if there are business needs to run adhoc time-critical queries, it can be achieved via custom queries. We will discuss that in more detail in the next task.  
 ------------- 
 
 #### Task 3.3 (OPTIONAL): Explore SQL Analytics with Azure Synapse Serverless. <a name="sql-analytics-with-synapse"></a>
@@ -1074,11 +948,7 @@ In Exercise 3, you applied machine learning operations on this data product to b
 
 Meanwhile, Microsoft Purview provides a unified data governance service that helps manage and govern Wide World Importers’ data, which is stored in multi-cloud environments and in data sources such as Oracle, Teradata, ADLS Gen2, and Azure SQL Database.
 
-In this exercise, you’ll explore the Microsoft Purview setup.
-
-#### Task 4.1: Explore Microsoft Purview
-
-In this task, you will explore the Wide World Importers data estate that’s registered in Microsoft Purview.
+In this exercise, you will explore Wide World Importers data estate that’s registered in Microsoft Purview.
 
 1.	In the Azure portal web session (tab), in the search box (located across the top of the page), enter:**Microsoft Purview**.
 
@@ -1130,27 +1000,7 @@ In this task, you will explore the Wide World Importers data estate that’s reg
 
 ![Sources related to the collection](media/images/image4010.png)
 
-
-*Map view shows a graphical representation of the Wide World Importers’ data estate. You can also see data assets from various collections such as Azure Synapse Analytics, ADLS, Multi Cloud, Power BI, and Azure SQL Database. A collections is a categorization of various data sources that are registered in Microsoft Purview.*
-
-11. View the lineage of Synapse Pipeline.
-
-*It’s only possible to view lineage after scanning the registered resource. The ability to capture lineage is key feature of Microsoft Purview.*
-
-*In this exercise, you will look at the data lineage feature of Microsoft Purview.*
-
-*Within the lineage visualization, each asset is represented by a rectangular box. For example, assets can include SQL tables or CSV files. Each process is represented by a rounded-edge box and includes the Azure Synapse Copy activity among others.*
-
-*Here you can see the data lineage of the Azure Synapse, which is a registered asset in Microsoft Purview.*
->**Note:** This image is for informational purposes only.
-> You will not see this in your lab.
-> The lab instructor will guide you through the image in the lab session. 
-
-
-![lineage of Azure Synapse](media/images/image4011.png)
-
-
->**Note:** For detailed interactive experience with Microsoft Purview, please refer the ABC Lab at Ignite.
+>**Note:** For a detailed interactive experience with Microsoft Purview, please refer to the Purview Lab.
 ----
 
 That is how you as Data Engineers have helped Wide World Importers gain actionable insights from its disparate data sources, thereby contributing to future growth, customer satisfaction, and competitive advantage.
