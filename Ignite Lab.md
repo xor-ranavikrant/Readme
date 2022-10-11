@@ -1,7 +1,7 @@
 
 # Build an open standard data Lakehouse by using Azure Synapse Analytics and Azure Databricks
 
-**The estimated time to complete this lab is 60 minutes.**
+**The estimated time to complete this lab is 45 minutes.**
 
   
 
@@ -9,17 +9,20 @@
 
 ## Table of contents
 
-1. [Exercise 1: Data ingestion from spectrum of analytical and operational data sources into the Lakehouse ](#data-ingestion)
-	- [Task 1.1: Explore a Streaming data and analytics pipeline using ADX and Event Hub for a NRT (near real time) analytics scenario.](#streaming-data)
-	- [Task 1.2: Explore a few Synapse pipelines that ingest data from analytical data sources to the Bronze layer of the lake.](#analytical-sources)
-	- [Task 1.3: Explore a few Synapse pipelines that ingest data from operational data sources to the Bronze layer of the lake.](#operational-sources)
-2. [Exercise 2: Explore offline data and analytics pipeline using ADB Delta and Delta Live Tables. Land data from streaming pipe in the Lake and connect with non-streaming data to build a simple Lakehouse to serve Exercise 3. ](#delta-live-table-pipeline)
-3. [Exercise 3: Data Science and Analytics on the Lakehouse](#data-science-and-analytics-on-the-Lakehouse)
-	- [Task 3.1: Explore an ML model implemented using ADB managed MLflow and operationalized as an ML service using MLOps in Azure ML/AI. ](#ml-model-using-ml-flow)
-	- [Task 3.2: Implement a Power BI report to analyse data in the Lakehouse. ](#power-bi-report-to-analyse-data-in-the-Lakehouse)
-	- [Task 3.3: Explore SQL Analytics with Synapse Serverless SQL pool.](#sql-analytics-with-synapse)
-	- [Task 3.4: Explore SQL Analytics with Azure Databricks.](#explore-sql-analytics-with-azure-databricks)
-4. [Exercise 4: Tee up the Purview](#tee-up-the-purview)  
+1. [Exercise 1: Data ingestion from a spectrum of analytical and operational data sources into the Lakehouse. ](#data-ingestion)
+	- [Task 1.1: Explore a Streaming data and analytics pipeline using ADX for a near real time analytics scenario.](#streaming-data)
+	- [Task 1.2: Explore a few Synapse pipelines that ingest raw data from analytical data sources to the Bronze layer of the Data Lake.](#analytical-sources)
+	- [Task 1.3: Explore a few Synapse pipelines that ingest raw data from operational data sources to the Bronze layer of the Data Lake.](#operational-sources)
+2. [Exercise 2: Explore offline data and analytics pipeline using open Delta format and Azure Databricks Delta Live Tables. Stitch streaming and non-streaming data landed earlier to create a combined data product to build a simple Lakehouse.  ](#delta-live-table-pipeline)
+    - [Task 2.1: Set up Azure Databricks environment.](#adb-env)
+	- [Task 2.2: Review sentiment analysis model training.](#sentiment-model)
+	- [Task 2.3: Create a Delta Live Table pipeline.](#dlt-pipeline)
+3. [Exercise 3: Explore Machine Learning and Business Intelligence scenarios on the Lakehouse.](#data-science-and-analytics-on-the-Lakehouse)
+	- [Task 3.1: Review MLOps pipeline using the Azure Databricks managed MLflow. ](#ml-model-using-ml-flow)
+	- [Task 3.2: Leverage Power BI to derive actionable insights from data in the Lakehouse. ](#power-bi-report-to-analyse-data-in-the-Lakehouse)
+	- [Task 3.3 (OPTIONAL): Explore SQL Analytics with Azure Synapse Serverless.](#sql-analytics-with-synapse)
+	- [Task 3.4 (OPTIONAL): Explore SQL Analytics with Azure Databricks.](#explore-sql-analytics-with-azure-databricks)
+4. [Exercise 4: Glimpse of Purview to govern the overall data and analytics estate.](#tee-up-the-purview)  
 
 ----
 
@@ -52,7 +55,7 @@ In this Exercise you will act as a Data Engineer. Rupesh would like you to impro
 ---
  
 
-### Exercise 1: Data ingestion from spectrum of analytical and operational data sources into the Lakehouse <a name="data-ingestion"></a>
+### Exercise 1: Data ingestion from a spectrum of analytical and operational data sources into the Lakehouse. <a name="data-ingestion"></a>
 
 As the data engineer at Wide World Importers, you will start by landing data from a variety of sources into the Lakehouse. This data will be further cleansed, processed, and conformed by using Azure Databricks and Delta Live Tables. You will prepare the data for downstream consumption by data scientists and business intelligence analysts. Data sources include data related to its customers, products, marketing campaigns, social media, and sales transactions. This data is often generated in raw files format such as CSV, JSON, unstructured files, and even images. A lot of existing data is historical data.
 
@@ -61,7 +64,7 @@ To boost customer satisfaction, gain a competitive advantage, and ultimately dri
 In this exercise, you will explore how to ingest near real-time data into the Lakehouse and derive meaningful insights.
 
 
-#### Task 1.1: Explore a Streaming data and analytics pipeline using ADX and Event Hub for a NRT (near real time) analytics scenario. <a name="streaming-data"></a>
+#### Task 1.1: Explore a Streaming data and analytics pipeline using ADX for a near real time analytics scenario. <a name="streaming-data"></a>
 
 Wide World Importers wants its customers to have a pleasant in-store shopping experience. Maintaining the optimal temperature in stores and wine coolers is one way to accomplish this objective.
 
@@ -263,7 +266,7 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
   
 
-#### Task 1.2: Explore a few Synapse pipelines that ingest data from analytical data sources to the Bronze layer of the lake. <a name="analytical-sources"></a>
+#### Task 1.2: Explore a few Synapse pipelines that ingest raw data from analytical data sources to the Bronze layer of the Data Lake. <a name="analytical-sources"></a>
 
   
 Your next challenge is to ingest historical data from a spectrum of data sources.  
@@ -316,7 +319,7 @@ In this task you will ingest campaigns data from Snowflake and customer churn da
 
   
 
-#### Task 1.3: Explore a few Synapse pipelines that ingest data from operational data sources to the Bronze layer of the lake. <a name="operational-sources"></a>
+#### Task 1.3: Explore a few Synapse pipelines that ingest raw data from operational data sources to the Bronze layer of the Data Lake. <a name="operational-sources"></a>
 
   
 In this task, you will explore the design of a Synapse pipeline that is designed to ingest raw data coming from various operational sources into the data lake.
@@ -348,7 +351,7 @@ Congratulations! As a data engineer you have successfully ingested streaming nea
 
 -----------
 
-### Exercise 2: Explore offline data and analytics pipeline using ADB Delta and Delta Live Tables. Land data from streaming pipe in the Lake and connect with non-streaming data to build a simple Lakehouse to generate actionable insights in Exercise 3. <a name="delta-live-table-pipeline"></a>
+### Exercise 2: Explore offline data and analytics pipeline using open Delta format and Azure Databricks Delta Live Tables. Stitch streaming and non-streaming data landed earlier to create a combined data product to build a simple Lakehouse. <a name="delta-live-table-pipeline"></a>
 
 Analyzing disparate data sources in an integrated way has been a challenge for Wide World Importers. In the past, different teams at the company were assigned to analyze customer churn, social media trends, marketing campaigns, and sales forecasts. So, it was left to business analysts and executives to synthesize these datasets into a data-driven decision making solution. By delivering a Lakehouse, it will become simple for teams to collaborate on a unified workspace to process, analyze, and model data.
 
@@ -356,7 +359,7 @@ In this exercise, you will stitch two sets of data together to generate actionab
 
 The data source for the pipeline is the Bronze layer in ADLS Gen2, which was loaded by the Synapse pipeline in Exercise 1. This Bronze layer contains campaigns data, customer churn data, store transactions data, sales data and Twitter messages.
 
-#### Task 2.1: Set up Azure Databricks environment
+#### Task 2.1: Set up Azure Databricks environment <a name="adb-env"></a>
 
 In this task, you will set up the Azure Databricks environment.
 
@@ -397,7 +400,7 @@ In this task, you will set up the Azure Databricks environment.
 *In exercise 1, we extracted data from a spectrum of data sources and landed it into ADLS Gen 2 data lake. To access this data from ADLS Gen2 data lake, we need to mount it on Azure Databricks filesystem. Executing this script will mount ADLS Gen2 to Azure Databricks.*
 
 
-#### Task 2.2: Review sentiment analysis model training
+#### Task 2.2: Review sentiment analysis model training. <a name="sentiment-model"></a>
 
 In this task, you will explore the sentiment analysis model training notebook. This notebook is used to retrieve the model ID that’s used by the DLT pipeline for further data processing.
 
@@ -417,7 +420,7 @@ In this task, you will explore the sentiment analysis model training notebook. T
 
 
 
-#### Task 2.3: Create a Delta Live Table pipeline
+#### Task 2.3: Create a Delta Live Table pipeline. <a name="dlt-pipeline"></a>
 
 In this task, you will create a Delta Live Table pipeline.
 
@@ -502,23 +505,23 @@ Congratulations! As a data engineer, you have now set up a solid foundation of f
 
 ----
 
-### Exercise 3: Data Science and Analytics on the Lakehouse <a name="data-science-and-analytics-on-the-Lakehouse"></a>
+### Exercise 3: Explore Machine Learning and Business Intelligence scenarios on the Lakehouse. <a name="data-science-and-analytics-on-the-Lakehouse"></a>
 
 
-#### Task 3.1: MLOps pipeline using the Azure Databricks managed MLflow
+#### Task 3.1: Review MLOps pipeline using the Azure Databricks managed MLflow. <a name="ml-model-using-ml-flow"></a>
 
 The following architecture diagram shows the end-to-end MLOps pipeline that uses managed MLflow on Azure Databricks. After multiple iterations with various hyperparameters, the best performing model in Databricks MLflow model was registered and set up in Azure Databricks Workspace and Azure ML Workspace to support low-latency requests.
 
-Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a given customer will churn.
+Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a particular customer will churn.
 
 We would also like to understand our customer's sentiment, so as to create targeted campaigns to improve our sales. 
 
 
-![MLOps pipeline using the Azure Databricks managed MLflow](media/images/image3100.png)
+![Review MLOps pipeline using the Azure Databricks managed MLflow](media/images/image3100.png)
  
 
 
-*In Azure Databricks, everything starts with setting up a workspace. You can access all your Databricks assets by using the sidebar. The content in the sidebar depends on the selected persona, whether it’s Data Science & Engineering, Machine Learning, or SQL.*
+*In Azure Databricks, everything starts with setting up a workspace. You can access all your Databricks assets by using the sidebar. The content in the sidebar depends on the selected persona, e.g. it’s Data Science & Engineering, Machine Learning, or SQL.*
   
 1.	In the Databricks web session (tab), which you opened in Exercise 2, in the left pane, in the top dropdown list, select the **Machine Learning** persona.
 
@@ -538,12 +541,15 @@ We would also like to understand our customer's sentiment, so as to create targe
   
     ![cmd 11](media/images/image3103.png)
 
-*With the prepared data, we observe that customer churn effect is related to the tenure and the total amount spent by customers. Here we can see, a low churn rate in cases where customer tenure is high and where they spend more with Wide World Importers.*
+*In the chart above, we observe that customer churn effect is related to the tenure and the total amount spent by customers. Here we can see, when the customer tenure is low and their spend is less, they are more likely to churn.*
 
-*We will use the popular xgboost library to train a more accurate model. Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time. The code tracks the performance of each parameter configuration with MLflow.*
+
+
   
 
 4.  Review the **cmd 29** cell.
+
+*Here we will use the popular xgboost library to train a more accurate model. Databricks is able to use a “parallel hyperparameter sweep” to train multiple hyperparameter configurations at the same time. The code tracks the performance of each parameter configuration with MLflow.*
   
 
     ![Runs using a parallel coordinates](media/images/image3115.png)
@@ -595,9 +601,11 @@ The MLflow plugin azureml-mlflow can deploy models to Azure ML, either to Azure 
     ![Campaign Analytics](media/images/image3128.png)
 
 
-*Using the sentiment model we trained in cmd 75 cell, Wide World Importers decided to run various campaigns to reduce their churn and increae their revenue.*
+
 
 9. Review the **cmd 88** cell.
+
+*Using the sentiment model we trained in cmd 75 cell, Wide World Importers decided to run various campaigns to reduce their churn and increase their revenue.*
 
 
     ![cmd 88](media/images/image3129.png)
@@ -633,7 +641,7 @@ To validate their approach to reduce churn and improve sales, Wide World Importe
 
 ----------
 
-#### Task 3.2: Implement a Power BI report to analyse data in the Lakehouse. <a name="power-bi-report-to-analyse-data-in-the-Lakehouse"></a>
+#### Task 3.2: Leverage Power BI to derive actionable insights from data in the Lakehouse. <a name="power-bi-report-to-analyse-data-in-the-Lakehouse"></a>
 
  For the purposes of this task, the date is November 1. Wide World Importers now needs to prepare for a resounding success with unprecedented sales in the upcoming Cyber Monday Sales event. The good news is that enriched datasets sourced from disparate data sources and the best performing model outputs have now been placed in the lakehouse ready for consumption by Power BI.
 
@@ -881,7 +889,7 @@ So, thanks to Power BI, it is clear to Wide World Importers how to improve their
 Now, let us see how on an ongoing basis if there are business needs to run adhoc time-critical queries, it can be achieved via custom queries. We will discuss that in more detail in the next task.  
 ------------- 
 
-#### Task 3.3 (Optional): Explore SQL Analytics with Azure Synapse <a name="sql-analytics-with-synapse"></a>
+#### Task 3.3 (OPTIONAL): Explore SQL Analytics with Azure Synapse Serverless. <a name="sql-analytics-with-synapse"></a>
 
 Data engineers are often required to support ad hoc and time-critical queries in addition to regular, scheduled reports.
 
@@ -956,7 +964,7 @@ There you go. This is how easily data engineers can run adhoc time-critical quer
 ----  
 
 
-#### Task 3.4 (Optional): Explore SQL Analytics with Azure Databricks. <a name="explore-sql-analytics-with-azure-databricks"></a>
+#### Task 3.4 (OPTIONAL): Explore SQL Analytics with Azure Databricks. <a name="explore-sql-analytics-with-azure-databricks"></a>
 
 
 Azure Databricks provides an environment that allows you to run quick ad hoc SQL queries on your data lake. Queries support multiple visualization types that help you to explore query results from different perspectives.
@@ -975,7 +983,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 ![Select Azure Databricks resource](media/images/image3403.png)
 
-4. In the Azure Databricks resource page, select Launch Workspace.
+4. In the Azure Databricks resource page, select **Launch Workspace**.
 
 ![Select Azure Databricks resource](media/images/image2104.png)
 
@@ -1056,7 +1064,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 ---
 
-### Exercise 4: Tee up the Purview <a name="tee-up-the-purview"></a>
+### Exercise 4: Glimpse of Purview to govern the overall data and analytics estate. <a name="tee-up-the-purview"></a>
 
   
 
