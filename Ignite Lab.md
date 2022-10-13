@@ -5,8 +5,6 @@
 
   
 
-  
-
 ## Table of contents
 
 1. [Exercise 1: Data ingestion from a spectrum of analytical and operational data sources into the Lakehouse. ](#data-ingestion)
@@ -53,6 +51,21 @@ In this Exercise you will act as a Data Engineer. Rupesh would like you to impro
 Here is the visual representation of the exercise that we are going to perform in this lab.
 
 ![Lab exercises](media/images/imageLabExercises.png)
+
+You will experience creation of a simple integrated, open and governed Data Lakehouse foundation using the Microsoft Analytics Solution pattern. 
+
+In this lab we will cover the following: 
+
+1. As a first step we will look at Data ingestion from a spectrum of analytical and operational data sources into the Lakehouse. We start with Streaming data and analytics pipeline using ADX for a near real time analytics scenario followed by Synapse pipelines that ingest raw data from analytical/ operational data sources to the Bronze layer. 
+
+2. The second step is to explore offline data and analytics pipeline using open Delta format and Azure Databricks Delta Live Tables. We will stitch streaming and non-streaming data (landed earlier), to create a combined data product to build a simple Lakehouse.
+
+3. In the third step, we explore ML and BI scenarios on the Lakehouse. Here we will review MLOps pipeline using the Azure Databricks managed MLflow with Azure ML. Then using Power BI with Synapse serverless capabilities we will derive actionable insights. Last, but not least, we will leverage Purview for data governance. 
+
+
+
+
+[Click Through Demo](https://content.cloudguides.com/guides/Build%20an%20open%20standard%20data%20lakehouse)
  
 ---
  
@@ -61,7 +74,7 @@ Here is the visual representation of the exercise that we are going to perform i
 
 As the data engineer at Wide World Importers, you will start by landing data from a variety of sources into the Lakehouse. This data will be further cleansed, processed, and conformed by using Azure Databricks and Delta Live Tables. You will prepare the data for downstream consumption by data scientists and business intelligence analysts. Data sources include data related to its customers, products, marketing campaigns, social media, and sales transactions. This data is often generated in raw files format such as CSV, JSON, unstructured files, and even images. A lot of existing data is historical data.
 
-To boost customer satisfaction, gain a competitive advantage, and ultimately drive revenue growth, Wide World Importers wants to analyze the data to obtain meaningful insights related to their customers, marketing campaigns, and sales forecasts. However, their immediate challenge is to generate and use near real-time streaming data. So, they installed IoT devices in their stores to track customer shopping patterns and thermostat readings. They also set up Azure Data Explorer (ADX) with anomaly detection to correlate in-store traffic and store temperatures. As a result, they now have a large volume of real-time streaming data related to in-store traffic, temperature readings and anomaly detection.
+To boost customer satisfaction, gain a competitive advantage, and ultimately drive revenue growth, Wide World Importers wants to analyze the data to obtain meaningful insights related to their customers, marketing campaigns, and sales forecasts. However, their immediate challenge is to generate and use near real-time streaming data. So, they installed IoT devices in their stores to analyze customer shopping patterns and thermostat readings. They also set up Azure Data Explorer (ADX) with anomaly detection to correlate in-store traffic and store temperatures. As a result, they now have a large volume of real-time streaming data related to in-store traffic, temperature readings and anomaly detection.
 
 In this exercise, you will explore how to ingest near real-time data into the Lakehouse and derive meaningful insights.
 
@@ -74,13 +87,13 @@ Consider that the Black Friday Sale in-store event has just started at 6:00 AM E
 
 In this task, you will use ADX to explore thermostat data from the stores streamed in near real time to an Azure Event Hub.
 
-1.	Open Edge.
+1.	Login to the VM with **Password**. 
 
-2.	Navigate to Azure Portal at https://portal.azure.com/
+2.	Open Edge, and then navigate to Azure Portal at [https://portal.azure.com/](https://portal.azure.com/)
 
 3.	Under the **Resources** tab, you will find the login credentials for your lab session. 
 
-4.  Use the **Username** and **Password** to log into the Azure Portal.
+4.  Use these credentials to log into the Azure Portal.
 
 
 ![Azure zredentials for the lab session](media/images/imageAzureCredentials.png)
@@ -154,6 +167,8 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 21. Select **Open in Azure Data Explorer**.
 
+>**Note:** Please remember to execute step 20.
+
 *This will open Azure Data Explorer in a new web session (tab).*
 
 ![Open Azure Data Explorer](media/images/imageOpenADX.png)
@@ -173,34 +188,34 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 ![Paste the URI into the address bar](media/images/image1127.png)
 
 24.	In the **Destination** tab, in **Cluster** dropdown list, select the Data Explorer pool.
-
->**Note:** If you do not see any Data Explorer Pool in **Cluster** dropdown, select **Add Cluster**.
-
-> ![Add Cluster](media/images/imageAddCluster.png)
-
-> Navigate to the Azure Synapse web session (tab), select **Manage** hub from the left pane.
-
-> Select the **Data explorer pools (preview)** from the **Analytics pool** pane.
-
-> Select the **igniteKustopool-**.
-
-> ![manage tab](media/images/imageManageHub.png)
-
-> Under the **Query endpoint** copy the **URL** and select **Close** to close the pane.
-
-> ![Copy URI](media/images/imageCopyURI.png)
-
-> Go back to the data explorer tab, in the **Connection URI**, enter the URI copied above.
-
-> Select **Add**.
-
-> ![click Add](media/images/imageClickAdd.png)
      
-25.	In the **Table** box, enter **Thermostat**.
+25. In the Database dropdown, select **IngiteDB**. Then in the **Table** textbox, enter/type **Thermostat**.
+
+![Click Next](media/images/image1131.png)
 
 26.	Select **Next: Source.**
 
-![Click Next](media/images/image1131.png)
+>**Note:** In Step 24 if you do NOT see any Azure Data Explorer Pool in **Cluster** dropdown, select **Add Cluster** then follow steps a-f below.
+
+![Add Cluster](media/images/imageAddCluster.png)
+
+a. Navigate to the Azure Synapse web session (tab), select **Manage** hub from the left pane.
+
+b. Select the **Data Explorer pools (preview)** from the **Analytics pool** pane.
+
+c. Select the **igniteKustopool-**.
+
+![manage tab](media/images/imageManageHub.png)
+
+d. Under the **Query endpoint** copy the **URL** and select **Close** to close the pane.
+
+![Copy URI](media/images/imageCopyURI.png)
+
+e. Go back to the **Azure Data Explorer** tab, in the **Connection URI**, enter the URI copied above.
+
+f. Select **Add**, continue with Step 25.
+
+![click Add](media/images/imageClickAdd.png)
 
 27.	In the **Source** tab, in the **Source** dropdown list, select **Event Hub**.
 
@@ -227,6 +242,8 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 36.	Review the event data, which comprises thermostat measures from different devices.
 
 37.	In the **Data** format dropdown list, select **JSON.**
+
+>**Note:** Please remember to execute step 37. 
 
 38.	Select **Next: Start ingestion.**
 
@@ -260,13 +277,15 @@ In this task, you will use ADX to explore thermostat data from the stores stream
 
 48.	In the **Results** pane (located along the bottom), review the query result expressed as a chart.
 
+>**Note:** In case your query does not run successfully, chances are that the thermostat table was not created successfully in previous steps. You may have to create that table with a different name e.g. Thermostat1, update the KQL query accordingly and re-execute the KQL query.  
+
 ![Review the query result ](media/images/image1152.png)
 
 *Your graph may appear slightly different than the one shown above. It may take up to 60 seconds to load.*
 
 49.	Notice that the temperature in the Miami store is oscillating between 65 and 70 degrees Fahrenheit. Also notice, that as soon as any unanticipated spike occurs in the store temperature, it is automatically cooled down using ADX.
 
----
+----
 
   
 
@@ -484,7 +503,7 @@ In this task, you will create a Delta Live Table pipeline.
 
 ![Wating for the job to complete](media/images/image2317.png)
 
-*The lab insrtuctor will share with you the pipeline lineage. Please follow the lab instructor to understand the pipeline lineage in detail.*
+*The lab instructor will share with you the pipeline lineage. Please follow the lab instructor to understand the pipeline lineage in detail.*
 
 10. **Observe** the data lineage of Bronze, Silver and variety of Gold tables.
 
@@ -514,9 +533,9 @@ Congratulations! As a data engineer, you have now set up a solid foundation of f
 
 #### Task 3.1: Review MLOps pipeline using the Azure Databricks managed MLflow and Operationalized as an ML service in Azure ML<a name="ml-model-using-ml-flow"></a>
 
-Now that we've ingested and processed our customer data, we want to undersand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a particular customer will churn.
+Now that we've ingested and processed our customer data, we want to understand what makes one customer more likely to churn than another, and ultimately see if we can produce a machine learning model that can accurately predict if a particular customer will churn.
 
-We would also like to understand our customer's sentiment, so as to create targeted campaigns to improve our sales.
+We would also like to understand our customer's sentiment, so that we can create targeted campaigns to improve our sales.
 
 *Architecture Diagram*
 
@@ -524,22 +543,22 @@ We would also like to understand our customer's sentiment, so as to create targe
 
 1. In the Databricks web session (tab), which you opened in Exercise 2, in the left pane, in the top dropdown list, select the **Machine Learning** persona.
 
-*By default, the left pane appears in a collapsed state and only the icons are visible. You can hover your cursor over the pane to expand it to the full view.*
+*By default, the left pane appears in a collapsed state and only the icons are visible. You can hover your cursor over the pane to expand it for the full view.*
 
 ![Select the persona](media/images/image3101.png)
 
-2. In the left pane, select the **Workspaces** icon (first icon), and then select the ML Solutions in OneBox workspace.
+2. In the left pane, select the **Workspace** icon (first icon), and then select the **ML Solutions in OneBox** notebook. Once notebook is open, click on > to expand notebooks Table of content.
 
 ![Select the workspaces](media/images/image3102.png)
 
-In this task, you won’t run any cells. Instead, you will explore select cells and review their outcomes.
-The below scatter-plot chart, you can see the corelation between:
+In this task, you won’t run any cells. Instead, you will explore the selected cells and review their outcomes.
+In the scatter-plot chart below, you can see the corelation between:
 
-- customer churn rate,
-- amount spent by the customer and
-- number of months of patronage of the customer.
+- Customer churn,
+- Amount spent by the customer and
+- Number of months as a customer (tenure).
 
-  As a result, you will find that the customers who spend large amount and customer who are patrons for many months have the lowest churn rate.
+  Here you will find that most of the customers who churn are those, who spend the least amount of money and stay for fewer months.
 
 3. Review the **cmd 11** cell, and then review the output for **Exploratory Data Analysis**.
 
@@ -547,11 +566,11 @@ The below scatter-plot chart, you can see the corelation between:
 
 4. Review the **cmd 29** cell.
 
-Using the Customer churn data, we create multiple Customer churn ML models.
+By analyzing Customer Churn data, we create multiple Machine Learning models.
 
 ![Runs using a parallel coordinates](media/images/image3115.png)
 
-The best among these multiple ML Customer churn models is selected and registered with Azure model registry.
+The best ML model for Customer Churn is selected and registered with Azure model registry.
 
 **Operationalized as an ML service using MLOps in Azure ML/AI**.
 
@@ -563,17 +582,17 @@ The MLflow plugin azureml-mlflow is used to deploy the Customer churn ML model t
 
 **Twitter Sentiment Score Custom ML Model**
 
-*This model helps Wide World Importers analyze the sentiment of their customers based on what's trending on social media like Twitter. The popular social media sentiments can be used to create attractive campaigns for a targeted audience.*
+*This model helps Wide World Importers to analyze the sentiment of their customers based on what's trending on social media platforms like Twitter. The popular social media sentiments can then be used to create effective marketing campaigns for the target audience.*
 
 6. In the left, select the small arrow to expand the sidebar, collapse the **Customer Churn Model** and select **Twitter Sentiment Score Model**.
 
    ![Twitter sentiment score model](media/images/image3123.png)
 
-7. Review the **cmd 75** cell for customer model train and validation.
+7. Review the **cmd 75** cell for training and validation of customer sentiment model.
+*Here the Twitter sentiment model is trained for further consumption.*
 
    ![Customer model train and validation](media/images/image3126.png)
 
-*Here the Twitter sentiment model is trained for further consumption.*
 
 **Campaign Analytics**
 
@@ -583,7 +602,7 @@ The MLflow plugin azureml-mlflow is used to deploy the Customer churn ML model t
 
 9. Review the **cmd 88** cell.
 
-*Using the Twitter sentiment model we trained in cmd 75 cell, Wide World Importers decided to run various campaigns to reduce their customer churn and to increase their revenue.*
+*Wide World Importers decided to run a number of campaigns using the Twitter sentiment model which was trained in cmd 75 cell in order to reduce customer churn and increase revenue.*
 
 ![cmd 88](media/images/image3129.png)
 
@@ -593,29 +612,31 @@ The MLflow plugin azureml-mlflow is used to deploy the Customer churn ML model t
 
     ![Sales Forecasting](media/images/image3132.png)
 
-To validate their approach to reduce churn and improve sales, Wide World Importers decided to use a sales forecasting model.
+A sales forecasting model was used by Wide World Importers to validate if their approach to reduce churn and improve sales was effective.
 
-*You will now look at the scenario where you are forecasting sales using a Regression model and deploying it to Azure ML as a service using a model registered in Azure Databricks.*
+*Here you are forecasting sales using a Regression model and deploying it to Azure ML as a service using a model registered in Azure Databricks.*
 
 11. Review the **cmd 127** cell where model deployment is created.
 
     ![Model Deployement](media/images/image3136.png)
 
-*The model gets deployed to Azure ML endpoint. It can be consumed further for predicting the sales for Wide World Importers.*
+*The model is deployed to an Azure ML endpoint from which it can be consumed to predict sales.*
 
-12. Review the **cmd 133** cell to see sales forecast using store data after the campaigns.
+12. Review the **cmd 133** cell to see sales forecast using store data after launching the campaigns.
 
     ![Store data after the campaigns ](media/images/image3138.png)
 
-*All this analysis using MLOps enabled Wide World Importers to predict positive sales forecast and a successful year ahead*.
+*All these analysis using MLOps helped Wide World Importers to predict positive sales forecast and a successful year ahead*.
 
 ---
 
 #### Task 3.2: Leverage Power BI to derive actionable insights from data in the Lakehouse. <a name="power-bi-report-to-analyse-data-in-the-Lakehouse"></a>
 
-For the purposes of this task, the date is November 1. Wide World Importers now needs to prepare for a successful Cyber Monday Sale event. The good news is that the enriched datasets sourced from disparate data sources and the best performing model outputs have now been placed in the Lakehouse ready for consumption by Power BI.
+For this task, the date is November 1. Wide World Importers now needs to prepare for a successful Cyber Monday Sale event. Good news! The enriched datasets sourced from disparate data sources and the best performing model outputs have now been placed in the Lakehouse for Power BI consumption..
 
 In this task, you will work with Power BI to reveal some valuable insights.
+
+> **Note:** Please make sure you are **logged into the VM** for the following steps.
 
 1.	Open a new web session (tab), and then navigate to: **https://powerbi.com**
 
@@ -627,7 +648,7 @@ In this task, you will work with Power BI to reveal some valuable insights.
 
 3. If prompted, in the **Business phone number** enter:**1234567891**, select **Next**.
 
->**Note:** **DO NOT** check the checkbox at the bottom of the page.
+>**Note:** **DO NOT** check the checkboxes at the bottom of the page.
 
 
 ![Enter a dummy number](media/images/imageDummyNumber.png)
@@ -639,13 +660,15 @@ In this task, you will work with Power BI to reveal some valuable insights.
 
 *You have now signed in to Power BI.*
 
-5. In the Power BI service, in the **Navigation** pane (at the left), select **Workspaces** (second icon from the bottom).
+5. In the Power BI service, in the **Navigation** pane (at the left), we have two options a) Workspaces and b) My Workspace
 
 6. In the workspaces pane, select **My Workspace**.
 
 ![Select New Workspace](media/images/imageMyWorkspace.png)
 
-7. To upload a Power BI Desktop file, on the **New** dropdown menu, select **Upload**.
+7. To upload a Power BI Desktop file, on the **New** dropdown menu, select **Upload a file**.
+
+> **Note:** Please make sure you are **logged into the VM** for the following steps.
 
 ![Select upload](media/images/image3208.png)
 
@@ -661,7 +684,7 @@ In this task, you will work with Power BI to reveal some valuable insights.
 
 11.	Notice that a Power BI report and dataset have been added to your workspace.
 
-12.	To open the report, select the **IgniteDemoReport** report.
+12.	To open the report, select the **IgniteDemoReport**.
 
 ![Power BI report added to your workspace.](media/images/image3212.png)
 
@@ -674,14 +697,14 @@ In this task, you will work with Power BI to reveal some valuable insights.
 
 ![PowerBI Report Name](media/images/image3227.png)
 
-14.  Lets navigate to **Churn Analysis Tab,** where we analyze the Customer Churn. This report and other two reports in Power BI are coming from the data Lakehouse that we created in earlier exercises.
+14.  Lets navigate to **Churn Analysis Tab,** where we analyze the Customer Churn. This report along with Campaign Analytics and Website Analytics reports in Power BI are coming from the data Lakehouse that we created in earlier exercises.
 
 
 ![PowerBI Report Buttons](media/images/image3228.png)
 
 
-15. The top left Scatter Chart shows the customers. The black color in the legend represents the customers who are more likely to churn, and the blue color shows the customers who are less likely to churn.
-You can notice that the churn rate is low when the customer tenure is high as well as they spend higher amounts.
+15. In the Scatter Chart on the left, the black dots represent customers more likely to churn, and the blue dots represent customers less likely to churn.
+You can notice that when the customer tenure is low and their spend amounts is also low, the customers are more likely to churn.
 
 16. With this insight, Wide World Importers decides to target customers with lesser tenure and lesser spend amounts through their new campaigns.
 
@@ -713,13 +736,13 @@ As per this Donut chart it seems that the bounce rate is high because around 60 
 
 ![Website Analysis Report page](media/images/image3242.png)
 
-Let us understand more about these **not happy** customers. What age group are they? What do they shop for and what devices they use to shop online? 
+Let us understand more about these **not happy** customers.  
 
 20. Click on **Not Happy** on the Donut chart to filter the report page.
 
 ![Not Happy Customers](media/images/imageDonutChart.png)
   
-The **site visitors by age group** chart shows that most of the "Not Happy" Customers are in the  age group of 21 to 40. So, it seems, millennials form the majority of unhappy online customers. Now, let us see what these millenials typically shop for online.
+The **site visitors by age group** chart shows that most of the "Not Happy" Customers are in the  age group of 21 to 40. It seems that millennials make up the majority of unhappy online customers. Now, let us see what these millenials typically shop for online.
  
 ![Site visitors by age group](media/images/imageAgeGroup.png) 
 
@@ -728,34 +751,35 @@ The **site visitors by age group** chart shows that most of the "Not Happy" Cust
 21.  We know that the millenials from the biggest customer segment are "Not Happy" when...
 
 - they could not find the product they searched for on the website.
-- Customers are also not happy when they were redirected to Wide World Importers website from a third party website.
-- Customers are also not happy when the website user experience on their mobile phones is not good.
+- when they were redirected to Wide World Importers website from a third party website.
+- when the website user experience on their mobile phones is not good.
 - they are not able find discounts on the website.
 
 ![Repeat Customers Chart](media/images/imageRepeatCustomersGraph.png)
 
-Ultimately, we can say that we need to improve the user experience on the website for product search and make sure it renders correctly on the mobile phone.
+As a result, we can say that we need to improve the user experience on the website for product search and make sure it renders correctly on mobile phones.
   
-Now, lets navigate to the top customer segment for additional insights generated.
+Now, let's navigate to the key influencers.
+![Key influencers Chart](media/PowerBI-Images/websiteAnalytics-keyInfluencers.png)
 
 22. Click on the **Top Segments** to show the details.
 
-23. Click on the first bubble 1 see the details for Segment 1.
+23. Click on the first bubble and see the details for Segment 1.
 
-94.5% customers are not happy.
+Segment 1 shows that it comprises of 94.5% customers who are not happy.
 
 
 ![Top Segments](media/images/image3248.png)
 
 
-94.5 % of the "not happy" customers experienced failed product searches. These are the millennials who are using their mobile devices for shopping.
+Segment 1 also shows that 94.5 % of the "not happy" customers experienced failed product searches. These are the millennials who are using their mobile devices for shopping.
 
 
 ![Millenials using mobile phone](media/images/imagePowerBI.png)
  
 
-As a result of this analysis, Wide World Importers reduce their bounce rate by implementing a mobile-friendly website with fast product search, focussing on high demand product for the millenials.
-These changes not only improve the bounce rate dramatically, but they also reward Wide World Importers with an uprecedented sales at their Cyber Monday Sale event. 
+As a result of this analysis, Wide World Importers reduce their bounce rate by implementing a mobile-friendly website with fast product searches, focussing on high demand products for the millenials.
+These changes not only improve the bounce rate dramatically, but they also reward Wide World Importers with uprecedented sales at their Cyber Monday Sale event. 
 
 Now, let us see how on an ongoing basis, if there are any business needs to run adhoc time-critical queries, it can be achieved via custom queries. 
 
@@ -796,7 +820,7 @@ In this task, you will learn how to perform custom SQL and business intelligence
 
 6. In the **Develop** pane, expand **SQL scripts**.
 
-7. Select the **1 Query Campaign And Twitter Data Using TSQL Language** script.
+7. Select the **1 Query Campaign And Twitter Data Using T-SQL Language** script.
 
 ![Query Campaign And Twitter Data Using TSQL Language](media/images/image3307.png)
 
@@ -812,28 +836,28 @@ In this task, you will learn how to perform custom SQL and business intelligence
 
 11.	Select **Run**.
 
-![Select Run](media/images/image3311.png)
-
 12.	Review the query result in the lower pane.
 
-We can directly query external files stored in Azure storage without copying or loading data into a specialized store, all using familiar T-SQL dialect. This is a quick and easy way to read the content of the files without pre-configuration.
-A default, built-in, endpoint for this service is provided with in Synapse workspace.
+![Select Run](media/images/image3311.png)
+
+
+
+We can also directly query external files stored in Azure storage without copying or loading data into a specialized store, all using familiar T-SQL dialect. This is a quick and easy way to read the content of the files without pre-configuration.
+A default, built-in, endpoint for this service is provided within Synapse workspace.
 
 *You will now create a view of the campaign file.*
 
 13. To create a view that queries the first 100 campaigns, in the script file, select lines 35-44.
 
-14.	Select **Run**.
+14.	Select **Run** to create a view of the Campaign file in Serverless pool.
 
 ![Select Run](media/images/image3314.png)
 
-Let’s create a view over Campaign file in Serverless pool. 
-
-With the relevant metadata placed in an Azure storage account, views will allow us to reuse those queries in other places as well such as Power BI, in conjunction with serverless SQL pool.
+With the relevant metadata placed in an Azure storage account, the views will allow us to reuse those queries in other places as well such as Power BI, in conjunction with serverless SQL pool.
 
 *Executing ad hoc queries and creating views over data in the data lake by using a Synapse serverless SQL pool is straightforward*.
 
-There you go. This is how easily data engineers can run adhoc time-critical queries on Synapse. We can do the same even with Databricks. Let us take a look.
+We can do the same even with Databricks. Let us see how.
 
 ----  
 
@@ -865,7 +889,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 *You will now export a Databricks notebook in HTML format to your local machine.*
 
-5. In the Databricks web session (tab), at the left, select the Workspace icon (second from the top).
+5. In the Databricks web session (tab), at the left, select the **Workspace** icon (second from the top).
 
 
 6. Select **04_SQL_Analytics_On_Delta_Live_Tables** notebook in Databricks workspace.
@@ -876,8 +900,8 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 **Raw Twitter Data - Bronze**
 
-*The bronze layer stores the raw, unprocessed data from Twitter API pulls. By leaving it in its raw state, there's an option to reprocess it for different purposes in the future. Thanks to Azure Data Lake Gen2, it is possible to maintain this data for as long as possible at a very low costs.*
-*The bronze layer is usually the domain of data engineers who build pipelines to refine this data forward into the Silver layer.*
+*The bronze layer stores the raw, unprocessed data from Twitter API pulls. By leaving it in its raw state, there's an option to reprocess it for different purposes in the future. Thanks to Azure Data Lake Gen2, it is possible to maintain this data for as long as possible at a very low cost.*
+*The bronze layer is usually the domain of data engineers who build pipelines to refine this data and forward it into the Silver layer.*
 
 ![Raw Twitter data](media/images/image3406.png)
 
@@ -886,7 +910,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 **Filtered Twitter Data - Silver**
 
 *In the Silver layer, the raw Twitter data is curated into something more usable for data scientists.*
-*They can take these cleaned up data and develop features for machine learning models as well as aggregated analytical datasets for data analysts*.
+*They can take this cleaned up data and develop features for machine learning models as well as aggregated analytical datasets for data analysts*.
 
 ![Filtered Twitter data](media/images/image3407.png)
 
@@ -894,7 +918,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 **Curated Twitter Data - Gold**
 
-*The Gold layer is to enhance and refine the silver layer data ets even further so that it is ready for fit-for-purpose tables and views for specific analytical needs.*
+*The Gold layer is to enhance and refine the silver layer datasets even further so that it is ready for fit-for-purpose tables and views for specific analytical needs.*
 *Here we've augmented the Twitter data with a machine learning model to identify the sentiment (positive, neutral, or negative) of each Tweet.*
 
 ![Curated Twitter data](media/images/image3408.png)
@@ -905,7 +929,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 *By pre-emptively aggregating the data that rarely or slowly changes, it provides a great performance benefit to the end users.*
 *The DLT pipeline performs this aggregation of hashtag counts by the geolocation of the Tweets.*
-*By updating this everytime more Tweets are ingested, it is possible to keep the aggregation table up-to-date and then quickly consume and visualize it in tools like Power BI.*One nice feature of Databricks notebooks is if a cell produces a DataFrame output (like the one below), you can also profile the data as well as generate quick visualizations. Throw in Markdown and comments and notebooks are a super convenient way to collaborate and communicate with your team, leadership, customers, and other stakeholders.
+By updating this everytime more Tweets are ingested, it is possible to keep the aggregation table up-to-date and then quickly consume and visualize it in tools like Power BI.One nice feature of Databricks notebooks is if a cell produces a DataFrame output (like the one below), you can also profile the data as well as generate quick visualizations. Throw in Markdown and comments and notebooks are a super convenient way to collaborate and communicate with your team, leadership, customers, and other stakeholders.
 
 ![Aggregations Are A Great User Experience Enhancement](media/images/image3410.png)
 
@@ -932,7 +956,7 @@ In this task, you will explore some SQL analytics features of Azure Databricks, 
 
 **Time Travel**
 
-*In the audit history it is possible to see the history of the different versions of the table as well as load and display of any of those versions.*
+*In the audit history it is possible to see the history of the different versions of the table as well as load and display any of those versions.*
 
 ![Time Travel](media/images/image3413.png)
 
@@ -1001,9 +1025,19 @@ In this exercise, you will explore Wide World Importers data estate that’s reg
 ![Sources related to the collection](media/images/image4010.png)
 
 >**Note:** For a detailed interactive experience with Microsoft Purview, please refer to the Purview Lab.
+
 ----
 
-That is how you as Data Engineers have helped Wide World Importers gain actionable insights from its disparate data sources, thereby contributing to future growth, customer satisfaction, and competitive advantage.
+Congratulations! You as Data Engineers have helped Wide World Importers gain actionable insights from its disparate data sources, thereby contributing to future growth, customer satisfaction, and competitive advantage.
+
+In this lab we experienced the creation of a simple integrated, open and governed Data Lakehouse foundation using the Microsoft Analytics Solution pattern. 
+
+In this lab we covered the following: 
+1.	As a first step we looked at Data ingestion from a spectrum of analytical and operational data sources into the Lakehouse. We started with Streaming data and analytics pipeline using ADX for a near real time analytics scenario followed by Synapse pipelines that ingested raw data from analytical/ operational data sources to the Bronze layer. 
+
+2.	The second step was to explore offline data and analytics pipeline using open Delta format and Azure Databricks Delta Live Tables. We stitched streaming and non-streaming data (landed earlier), to create a combined data product to build a simple Lakehouse.
+
+3.	In the third step, we explored ML and BI scenarios on the Lakehouse. Here we reviewed MLOps pipeline using the Azure Databricks managed MLflow with Azure ML. Then using Power BI with Synapse serverless SQL pool capabilities we derived actionable insights. We explored Explore SQL Analytics with Azure Databricks and Azure Synapse Serverless. Last, but not least, we leveraged Purview for data governance. 
 
   
 
